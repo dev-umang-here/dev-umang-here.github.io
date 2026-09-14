@@ -856,11 +856,53 @@
       .contact-in {
         max-width: var(--max-w);
         margin: 0 auto;
-        padding: 112px var(--mx) 40px;
-        text-align: center;
+        padding: 72px var(--mx) 40px;
       }
-      /* The address is the whole invitation — no restating it in a
-         field list above and a link row below. */
+      .contact-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 48px;
+        padding-bottom: 44px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .contact-mono {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: clamp(3rem, 7vw, 6rem);
+        line-height: 0.86;
+        letter-spacing: -0.03em;
+      }
+      .contact-mono .red-dot {
+        color: var(--red);
+      }
+      .cfields {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        text-align: right;
+      }
+      .cfield .k {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 4px;
+      }
+      .cfield .v {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--ink);
+      }
+
+      .contact-center {
+        text-align: center;
+        padding: 64px 0 60px;
+        border-bottom: 1px solid var(--ink);
+      }
+      /* The address is the invitation. Hover paints it blue and draws
+         the rule beneath text and arrow together. */
       .contact-email {
         display: inline-flex;
         align-items: center;
@@ -869,13 +911,18 @@
         font-family: var(--display);
         font-weight: 900;
         font-size: clamp(1.05rem, 6.6vw, 5.4rem);
-        line-height: 1;
+        line-height: 1.05;
         letter-spacing: -0.03em;
         max-width: 100%;
-        transition: color 0.2s ease;
+        padding-bottom: 0.06em;
+        border-bottom: 3px solid transparent;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
       }
       .contact-email:hover {
         color: var(--blue);
+        border-bottom-color: var(--blue);
       }
       .contact-arrow {
         width: 0.66em;
@@ -894,8 +941,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px 40px;
-        margin-top: 40px;
-        margin-bottom: 88px;
+        margin-top: 34px;
       }
       .contact-links a {
         font-family: var(--mono);
@@ -908,14 +954,13 @@
       .contact-links a:hover {
         color: var(--blue);
       }
+
       .contact-foot {
         display: flex;
         flex-wrap: wrap;
         gap: 12px 40px;
         justify-content: space-between;
-        border-top: 1px solid var(--rule);
-        padding-top: 20px;
-        text-align: left;
+        padding-top: 32px;
       }
       .contact-foot span {
         font-family: var(--mono);
@@ -923,6 +968,15 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--ink-soft);
+      }
+      @media (max-width: 720px) {
+        .contact-top {
+          flex-direction: column;
+          gap: 32px;
+        }
+        .cfields {
+          text-align: left;
+        }
       }
 
       /* ── REVEAL ─────────────────────────────────────────────────── */
@@ -1919,30 +1973,50 @@
     <!-- ── CONTACT ────────────────────────────────────────────── -->
     <footer class="contact" id="contact">
       <div class="contact-in">
-        <a class="contact-email" href="mailto:umangbackend@gmail.com">
-          <span>umangbackend@gmail.com</span>
-          <svg class="contact-arrow" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M10 90 L90 10 M90 10 L90 58 M90 10 L42 10" />
-          </svg>
-        </a>
+        <div class="contact-top">
+          <p class="contact-mono">U.D<span class="red-dot">.</span></p>
+          <div class="cfields">
+            <div class="cfield">
+              <p class="k">Email</p>
+              <p class="v">umangbackend@gmail.com</p>
+            </div>
+            <div class="cfield">
+              <p class="k">Status</p>
+              <p class="v"><i class="sq"></i>Open to new roles</p>
+            </div>
+            <div class="cfield">
+              <p class="k">Focus</p>
+              <p class="v">Backend · Distributed systems · AI</p>
+            </div>
+          </div>
+        </div>
 
-        <div class="contact-links">
-          <a
-            href="https://www.linkedin.com/in/umang-dubey-007/"
-            target="_blank"
-            rel="noopener"
-            >LinkedIn ↗</a
-          >
-          <a
-            href="https://github.com/dev-umang-here"
-            target="_blank"
-            rel="noopener"
-            >GitHub ↗</a
-          >
-          <a href="umang-dubey-resume.pdf" target="_blank" rel="noopener"
-            >Résumé PDF ↗</a
-          >
-          <a href="tel:+916395843633">+91 63958 43633 ↗</a>
+        <div class="contact-center">
+          <a class="contact-email" href="mailto:umangbackend@gmail.com">
+            <span>umangbackend@gmail.com</span>
+            <svg class="contact-arrow" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M10 90 L90 10 M90 10 L90 58 M90 10 L42 10" />
+            </svg>
+          </a>
+
+          <div class="contact-links">
+            <a
+              href="https://www.linkedin.com/in/umang-dubey-007/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn ↗</a
+            >
+            <a
+              href="https://github.com/dev-umang-here"
+              target="_blank"
+              rel="noopener"
+              >GitHub ↗</a
+            >
+            <a href="umang-dubey-resume.pdf" target="_blank" rel="noopener"
+              >Résumé PDF ↗</a
+            >
+            <a href="tel:+916395843633">+91 63958 43633 ↗</a>
+          </div>
         </div>
 
         <div class="contact-foot">
