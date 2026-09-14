@@ -453,11 +453,10 @@ a{ color:inherit; text-decoration:none; }
 
     <div class="about-grid rv">
       <div class="about-prose">
-        <p>I'm a backend engineer working on <strong>distributed systems at scale</strong>. Four years across fintech, adtech and developer infrastructure, building services that stay correct under load: event-driven pipelines, idempotent transaction flows, and the observability that proves they hold.</p>
-        <p>At <strong>CoinSwitch</strong> I own access control and reliability for a trading platform carrying 30M+ orders a day. I built the delegated-access service that is now the authorisation path across 10+ product lines, re-architected the order flow for an order-of-magnitude P95 improvement, and delivered org-wide INR→USDT conversion with hedging-backed position protection. I own incident response for those services end to end.</p>
-        <p>What I'm strongest at is designing systems that degrade instead of collapsing: bounded concurrency, backpressure, partition-aware consumers, and schema decisions that don't turn into migrations a year later. Cutting P95 latency 70%, memory 35% and MTTR 60% came from measuring first and changing what the data actually pointed at.</p>
-        <p>The other half of my work is <span class="blue">AI agent infrastructure</span>. I build MCP tool servers with capability-scoped surfaces, multi-agent systems sequenced by deterministic orchestrators, and RAG pipelines — and I treat model and telemetry spend as an engineering constraint like any other, which is how our observability bill fell 93%.</p>
-        <p>Open to backend, distributed systems and AI engineering roles. Based in Bengaluru, India.</p>
+        <p>I'm a <strong>backend AI engineer</strong> who takes systems from 0→1 and works across the whole stack. Four years building <strong>distributed systems</strong> and making them reliable, cost-effective and scalable.</p>
+        <p>I build production <span class="blue">AI systems</span> the same way I build backend ones — for reliability and cost, not for demos. AI agents and AI-native development, used to make processes faster and take repetitive work off the table.</p>
+        <p>I start from the use case. The architecture follows from what the system actually has to do, not the other way round.</p>
+        <p>Building something new most days, and still learning. Looking for the next challenge.</p>
       </div>
 
       <aside class="about-side">
@@ -502,9 +501,7 @@ a{ color:inherit; text-decoration:none; }
         <ul>
           <li><span class="lead">Go, Python, Java</span></li>
           <li>Microservices, event-driven architecture</li>
-          <li>Concurrency, bounded worker pools</li>
-          <li>Idempotency, backpressure</li>
-          <li>REST, GraphQL, gRPC-style contracts</li>
+          <li>Concurrency, backpressure, idempotency</li>
           <li>HLD / LLD, design review</li>
         </ul>
       </div>
@@ -512,24 +509,19 @@ a{ color:inherit; text-decoration:none; }
       <div class="skill-group">
         <span class="label">Data &amp; Infrastructure</span>
         <ul>
-          <li><span class="lead">Kafka</span>, consumer groups, partitioning</li>
-          <li>PostgreSQL, TimescaleDB</li>
-          <li>Redis, Cassandra</li>
-          <li>Vector databases</li>
+          <li><span class="lead">Kafka, PostgreSQL, TimescaleDB</span></li>
+          <li>Redis, Cassandra, vector databases</li>
           <li>Schema design, query optimisation</li>
-          <li>Time-series &amp; graph-heavy workloads</li>
         </ul>
       </div>
 
       <div class="skill-group">
         <span class="label">AI &amp; Agent Systems</span>
         <ul>
-          <li><span class="lead">MCP</span> tool servers, schema design</li>
+          <li><span class="lead">MCP tool servers, schema design</span></li>
           <li>Claude Agent SDK, LangChain, LangGraph</li>
-          <li>Multi-step agent orchestration</li>
-          <li>RAG pipelines, retrieval design</li>
-          <li>Guardrails, confidence gating</li>
-          <li>Token budgeting &amp; cost optimisation</li>
+          <li>Agent orchestration, RAG pipelines</li>
+          <li>Guardrails, token budgeting, cost control</li>
         </ul>
       </div>
 
@@ -537,11 +529,9 @@ a{ color:inherit; text-decoration:none; }
         <span class="label">Cloud, Reliability &amp; Tooling</span>
         <ul>
           <li><span class="lead">AWS, GCP, Azure</span></li>
-          <li>Docker, Kubernetes</li>
+          <li>Docker, Kubernetes, CI/CD</li>
           <li>Prometheus, Grafana, tracing</li>
           <li>SLOs, incident response, on-call</li>
-          <li>CI/CD, feature flags</li>
-          <li>Observability cost control</li>
         </ul>
       </div>
     </div>
@@ -637,85 +627,6 @@ a{ color:inherit; text-decoration:none; }
       <span class="meta">Production &amp; self-directed<br>2025–2026</span>
     </div>
 
-    <!-- Intellr -->
-    <article class="sys rv">
-      <div class="metarow">
-        <span class="focus">IN PRODUCTION</span>
-        <span class="sep">/</span>
-        <span>intellr.io</span>
-        <span class="sep">/</span>
-        <span>Multi-agent platform</span>
-      </div>
-      <h3 class="sys-title">Intellr<br><span class="alt">hiring platform</span></h3>
-
-      <div class="sys-grid">
-        <div class="sys-tags">
-          <span class="sys-tag">Multi-agent</span>
-          <span class="sys-tag">Voice AI</span>
-          <span class="sys-tag">Orchestration</span>
-          <span class="sys-tag">Event pipelines</span>
-        </div>
-
-        <div>
-          <div class="sys-prose">
-            <p>A live AI hiring platform built around <strong>three autonomous agents behind a shared orchestration layer</strong>. A screening agent scores candidates across resume, LinkedIn and GitHub signals; a voice agent runs real-time conversational interviews with adaptive follow-ups; an automation agent advances candidates through rule-driven pipelines.</p>
-            <p>The engineering problem is not the models, it's everything around them: keeping voice turn-taking inside a latency budget, making scoring reproducible enough to audit, and holding pipeline state consistent while three agents and a calendar integration all write to it. The orchestration layer is deterministic on purpose, so agent behaviour stays observable and replayable.</p>
-          </div>
-
-          <a class="sys-live" href="https://intellr.io/" target="_blank" rel="noopener">intellr.io ↗</a>
-
-          <figure class="diagram">
-            <svg class="dg" viewBox="0 0 900 230" role="img" aria-label="Applicants enter a screening agent, then a voice interview agent, then an automation agent that advances candidates and syncs ATS and calendar, all sequenced by a deterministic orchestration layer.">
-              <defs>
-                <marker id="ia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
-                </marker>
-              </defs>
-
-              <rect class="node" x="6" y="34" width="162" height="64"/>
-              <text class="cap" x="20" y="60">APPLICANTS</text>
-              <text class="sub xs" x="20" y="78">resume · profile · repo</text>
-
-              <line x1="168" y1="66" x2="196" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="202" y="34" width="162" height="64"/>
-              <text class="cap" x="216" y="60">SCREENING AGENT</text>
-              <text class="sub xs" x="216" y="78">multi-signal scoring</text>
-
-              <line x1="364" y1="66" x2="392" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="398" y="34" width="162" height="64"/>
-              <text class="cap" x="412" y="60">VOICE AGENT</text>
-              <text class="sub xs" x="412" y="78">adaptive interview</text>
-
-              <line x1="560" y1="66" x2="588" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="594" y="34" width="162" height="64"/>
-              <text class="cap" x="608" y="60">AUTOMATION</text>
-              <text class="sub xs" x="608" y="78">IF/THEN advance</text>
-
-              <line x1="756" y1="66" x2="784" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node" x="790" y="34" width="104" height="64"/>
-              <text class="cap" x="804" y="60">ATS +</text>
-              <text class="cap" x="804" y="76">CALENDAR</text>
-
-              <!-- orchestration band -->
-              <rect class="band" x="202" y="126" width="554" height="42"/>
-              <text class="cap" x="216" y="152">DETERMINISTIC ORCHESTRATION LAYER</text>
-              <text class="sub xs" x="530" y="152">pipeline state · retries · audit trail</text>
-              <line x1="283" y1="98" x2="283" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-              <line x1="479" y1="98" x2="479" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-              <line x1="675" y1="98" x2="675" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-
-              <text class="tiny" x="216" y="196">EVERY AGENT DECISION IS SCORED, LOGGED AND REPLAYABLE</text>
-            </svg>
-            <figcaption class="diagram-cap">Fig. 01 — Agents do the judgement. The orchestrator owns the state.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </article>
-
     <!-- Self-healing on-call agent -->
     <article class="sys rv">
       <div class="metarow">
@@ -808,7 +719,7 @@ a{ color:inherit; text-decoration:none; }
               <path class="loop" d="M833 126 L833 140 L286 140 L286 126" marker-end="url(#sab)"/>
               <text class="loop-t" x="470" y="284">OUTCOMES FEED THE RUNBOOK STORE — THE NEXT INCIDENT STARTS WARMER</text>
             </svg>
-            <figcaption class="diagram-cap">Fig. 02 — Agents reason. Code decides what they're allowed to touch.</figcaption>
+            <figcaption class="diagram-cap">Fig. 01 — Agents reason. Code decides what they're allowed to touch.</figcaption>
           </figure>
 
           <div class="code">
@@ -828,7 +739,86 @@ tools/list
     kafka.reset_offset   requires: explicit human approval
 </pre>
           </div>
-          <p class="code-cap">Fig. 03 — The MCP tool surface. Capability is a server-side property.</p>
+          <p class="code-cap">Fig. 02 — The MCP tool surface. Capability is a server-side property.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Intellr -->
+    <article class="sys rv">
+      <div class="metarow">
+        <span class="focus">IN PRODUCTION</span>
+        <span class="sep">/</span>
+        <span>intellr.io</span>
+        <span class="sep">/</span>
+        <span>Multi-agent platform</span>
+      </div>
+      <h3 class="sys-title">Intellr<br><span class="alt">hiring platform</span></h3>
+
+      <div class="sys-grid">
+        <div class="sys-tags">
+          <span class="sys-tag">Multi-agent</span>
+          <span class="sys-tag">Voice AI</span>
+          <span class="sys-tag">Orchestration</span>
+          <span class="sys-tag">Event pipelines</span>
+        </div>
+
+        <div>
+          <div class="sys-prose">
+            <p>A live AI hiring platform built around <strong>three autonomous agents behind a shared orchestration layer</strong>. A screening agent scores candidates across resume, LinkedIn and GitHub signals; a voice agent runs real-time conversational interviews with adaptive follow-ups; an automation agent advances candidates through rule-driven pipelines.</p>
+            <p>The engineering problem is not the models, it's everything around them: keeping voice turn-taking inside a latency budget, making scoring reproducible enough to audit, and holding pipeline state consistent while three agents and a calendar integration all write to it. The orchestration layer is deterministic on purpose, so agent behaviour stays observable and replayable.</p>
+          </div>
+
+          <a class="sys-live" href="https://intellr.io/" target="_blank" rel="noopener">intellr.io ↗</a>
+
+          <figure class="diagram">
+            <svg class="dg" viewBox="0 0 900 230" role="img" aria-label="Applicants enter a screening agent, then a voice interview agent, then an automation agent that advances candidates and syncs ATS and calendar, all sequenced by a deterministic orchestration layer.">
+              <defs>
+                <marker id="ia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
+                </marker>
+              </defs>
+
+              <rect class="node" x="6" y="34" width="162" height="64"/>
+              <text class="cap" x="20" y="60">APPLICANTS</text>
+              <text class="sub xs" x="20" y="78">resume · profile · repo</text>
+
+              <line x1="168" y1="66" x2="196" y2="66" marker-end="url(#ia)"/>
+
+              <rect class="node blue" x="202" y="34" width="162" height="64"/>
+              <text class="cap" x="216" y="60">SCREENING AGENT</text>
+              <text class="sub xs" x="216" y="78">multi-signal scoring</text>
+
+              <line x1="364" y1="66" x2="392" y2="66" marker-end="url(#ia)"/>
+
+              <rect class="node blue" x="398" y="34" width="162" height="64"/>
+              <text class="cap" x="412" y="60">VOICE AGENT</text>
+              <text class="sub xs" x="412" y="78">adaptive interview</text>
+
+              <line x1="560" y1="66" x2="588" y2="66" marker-end="url(#ia)"/>
+
+              <rect class="node blue" x="594" y="34" width="162" height="64"/>
+              <text class="cap" x="608" y="60">AUTOMATION</text>
+              <text class="sub xs" x="608" y="78">IF/THEN advance</text>
+
+              <line x1="756" y1="66" x2="784" y2="66" marker-end="url(#ia)"/>
+
+              <rect class="node" x="790" y="34" width="104" height="64"/>
+              <text class="cap" x="804" y="60">ATS +</text>
+              <text class="cap" x="804" y="76">CALENDAR</text>
+
+              <!-- orchestration band -->
+              <rect class="band" x="202" y="126" width="554" height="42"/>
+              <text class="cap" x="216" y="152">DETERMINISTIC ORCHESTRATION LAYER</text>
+              <text class="sub xs" x="530" y="152">pipeline state · retries · audit trail</text>
+              <line x1="283" y1="98" x2="283" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
+              <line x1="479" y1="98" x2="479" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
+              <line x1="675" y1="98" x2="675" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
+
+              <text class="tiny" x="216" y="196">EVERY AGENT DECISION IS SCORED, LOGGED AND REPLAYABLE</text>
+            </svg>
+            <figcaption class="diagram-cap">Fig. 03 — Agents do the judgement. The orchestrator owns the state.</figcaption>
+          </figure>
         </div>
       </div>
     </article>
@@ -855,6 +845,45 @@ tools/list
             <p>An agent built on Swiggy Builders Club's <strong>Instamart MCP server</strong> that turns dietary preferences into a weekly meal plan, then resolves that plan into a real basket — SKU matching, substitutions when stock fails — and places the order.</p>
             <p>Built first for people in Bengaluru who don't know what to cook. Checkout is deliberately approval-gated: an agent that spends your money unprompted is a bug, not a feature.</p>
           </div>
+
+          <figure class="diagram">
+            <svg class="dg" viewBox="0 0 900 190" role="img" aria-label="Dietary preferences become a weekly meal plan, which resolves to a basket through the Instamart MCP server, held at a human approval gate before the order is placed.">
+              <defs>
+                <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
+                </marker>
+              </defs>
+
+              <rect class="node" x="6" y="50" width="185" height="66"/>
+              <text class="cap" x="22" y="78">PREFERENCES</text>
+              <text class="sub xs" x="22" y="96">diet · budget · household</text>
+
+              <line x1="191" y1="83" x2="232" y2="83" marker-end="url(#ga)"/>
+
+              <rect class="node blue" x="238" y="50" width="185" height="66"/>
+              <text class="cap" x="254" y="78">MEAL PLAN</text>
+              <text class="sub xs" x="254" y="96">LLM planning · 7 days</text>
+
+              <line x1="423" y1="83" x2="464" y2="83" marker-end="url(#ga)"/>
+
+              <rect class="node blue" x="470" y="50" width="185" height="66"/>
+              <text class="cap" x="486" y="78">RESOLVE BASKET</text>
+              <text class="sub xs" x="486" y="96">Instamart MCP server</text>
+              <text class="tiny" x="486" y="134">SKU MATCH · SUBSTITUTIONS</text>
+              <line x1="486" y1="122" x2="645" y2="122" stroke="#1E40FF" stroke-dasharray="2 3"/>
+
+              <line x1="655" y1="83" x2="696" y2="83" marker-end="url(#ga)"/>
+
+              <rect class="node gate" x="702" y="8" width="150" height="26"/>
+              <text class="gate-t" x="716" y="25">HUMAN APPROVAL</text>
+              <line x1="777" y1="34" x2="777" y2="48" stroke="#E8200C"/>
+
+              <rect class="node" x="702" y="50" width="185" height="66"/>
+              <text class="cap" x="718" y="78">PLACE ORDER</text>
+              <text class="sub xs" x="718" y="96">gated checkout</text>
+            </svg>
+            <figcaption class="diagram-cap">Fig. 04 — The same approval gate as Fig. 01, for the same reason.</figcaption>
+          </figure>
         </div>
       </div>
     </article>
@@ -870,23 +899,23 @@ tools/list
     <div class="prin-grid rv">
       <div>
         <p class="prin-num">01</p>
-        <p class="prin-name">Ownership end to end</p>
-        <p>HLD through on-call. I own the design review, the rollout plan, the dashboards and the SLO — and I'm the escalation path when the service I built starts failing.</p>
+        <p class="prin-name">Discovery</p>
+        <p>Architecture follows the use case. I work out what the system actually has to do — the load shape, the consistency it owes, the failure it can tolerate — before I design for it.</p>
       </div>
       <div>
         <p class="prin-num">02</p>
-        <p class="prin-name">Correctness under concurrency</p>
-        <p>Idempotent handlers, bounded worker pools, explicit backpressure, partition-aware consumers. Most production bugs at scale are ordering and retry bugs, not logic bugs.</p>
+        <p class="prin-name">Ownership</p>
+        <p>HLD through on-call. The design review, the rollout, the dashboards, the SLO — and the escalation path when the service I built starts failing.</p>
       </div>
       <div>
         <p class="prin-num">03</p>
-        <p class="prin-name">Profile, then optimise</p>
-        <p>Latency work starts with a flame graph and a P95, not an opinion. Allocation counts, lock contention, query plans, consumer lag — find the bound, then move it.</p>
+        <p class="prin-name">Correctness</p>
+        <p>Idempotent handlers, bounded worker pools, explicit backpressure, partition-aware consumers. Most production bugs at scale are ordering and retry bugs, not logic bugs.</p>
       </div>
       <div>
         <p class="prin-num">04</p>
-        <p class="prin-name">Explicit failure modes</p>
-        <p>Timeouts, circuit breakers, graceful degradation and replayable state. Every dependency gets a defined behaviour for when it's slow, wrong, or gone.</p>
+        <p class="prin-name">Reliability</p>
+        <p>Timeouts, circuit breakers, graceful degradation, replayable state. Every dependency gets a defined behaviour for when it's slow, wrong, or gone.</p>
       </div>
     </div>
   </section>
