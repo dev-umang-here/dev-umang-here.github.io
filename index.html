@@ -1,919 +1,2067 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Umang Dubey, Backend AI Engineer</title>
-<meta name="description" content="Backend AI engineer. Distributed systems at scale — 30M+ orders a day — and the AI agent infrastructure that operates them. Senior Software Engineer at CoinSwitch, Bengaluru.">
-<meta name="author" content="Umang Dubey">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Umang Dubey, Backend AI Engineer">
-<meta property="og:description" content="Distributed systems at scale, and the AI agent infrastructure that operates them.">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F2EFE7'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial' font-size='19' font-weight='bold' text-anchor='middle' fill='%230A1024'%3EU%3C/text%3E%3Crect x='23' y='20' width='5' height='5' fill='%23E8200C'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Big+Shoulders+Display:wght@500;700;900&display=swap">
-<style>
-*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Umang Dubey, Backend AI Engineer</title>
+    <meta
+      name="description"
+      content="Backend AI engineer. Distributed systems at scale — 30M+ orders a day — and the AI agent infrastructure that operates them. Senior Software Engineer at CoinSwitch, Bengaluru."
+    />
+    <meta name="author" content="Umang Dubey" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Umang Dubey, Backend AI Engineer" />
+    <meta
+      property="og:description"
+      content="Distributed systems at scale, and the AI agent infrastructure that operates them."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F2EFE7'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial' font-size='19' font-weight='bold' text-anchor='middle' fill='%230A1024'%3EU%3C/text%3E%3Crect x='23' y='20' width='5' height='5' fill='%23E8200C'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Big+Shoulders+Display:wght@500;700;900&display=swap"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-:root{
-  --paper:     #F2EFE7;
-  --paper-2:   #E9E4D8;
-  --ink:       #0A1024;
-  --ink-soft:  #545C75;
-  --rule:      #C9C3B4;
-  --blue:      #1E40FF;
-  --blue-deep: #0C1E66;
-  --blue-light:#BFD4FF;
-  --red:       #E8200C;
-  --yellow:    #FFD000;
-  --accent:    var(--blue);
+      :root {
+        --paper: #f2efe7;
+        --paper-2: #e9e4d8;
+        --ink: #0a1024;
+        --ink-soft: #545c75;
+        --rule: #c9c3b4;
+        --blue: #1e40ff;
+        --blue-deep: #0c1e66;
+        --blue-light: #bfd4ff;
+        --red: #e8200c;
+        --yellow: #ffd000;
+        --accent: var(--blue);
 
-  --grot:    'Familjen Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --serif:   'Instrument Serif', Georgia, serif;
-  --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --display: 'Big Shoulders Display', 'Familjen Grotesk', sans-serif;
+        --grot:
+          "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --serif: "Instrument Serif", Georgia, serif;
+        --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+        --display: "Big Shoulders Display", "Familjen Grotesk", sans-serif;
 
-  --mx:    max(40px, 4vw);
-  --max-w: 1440px;
-  --bar-h: 76px;
-}
+        --mx: max(40px, 4vw);
+        --max-w: 1440px;
+        --bar-h: 76px;
+      }
 
-html{ scroll-behavior:smooth; overflow-x:hidden; scroll-padding-top:calc(var(--bar-h) + 24px); }
-body{
-  background:var(--paper); color:var(--ink);
-  font-family:var(--grot); font-size:1.02rem; line-height:1.6;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-a{ color:inherit; text-decoration:none; }
-::selection{ background:var(--accent); color:var(--paper); }
-:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-  *,*::before,*::after{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
-}
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        scroll-padding-top: calc(var(--bar-h) + 24px);
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--grot);
+        font-size: 1.02rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--accent);
+        color: var(--paper);
+      }
+      :focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
 
-/* ── HEADER ─────────────────────────────────────────────────
+      /* ── HEADER ─────────────────────────────────────────────────
    Three zones: identity / nav / availability + CTA. The nav
    occupies the gap that previously sat empty on wide screens. */
-.status-bar{
-  position:fixed; top:0; left:0; right:0; z-index:100; height:var(--bar-h);
-  background:var(--paper); border-bottom:1px solid var(--ink);
-  display:flex; align-items:center;
-}
-.status-in{
-  width:100%; max-width:var(--max-w); margin:0 auto;
-  padding:0 var(--mx); display:flex; align-items:center; gap:40px;
-}
-.status-cell{ display:flex; flex-direction:column; gap:3px; min-width:0; }
-.status-cell .k{
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--red);
-}
-.status-cell .k::before{ content:"> "; }
-.status-cell .v{
-  font-family:var(--mono); font-size:.74rem; color:var(--ink-soft);
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-.status-cell .v.live{ color:var(--ink); }
+      .status-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--bar-h);
+        background: var(--paper);
+        border-bottom: 1px solid var(--ink);
+        display: flex;
+        align-items: center;
+      }
+      .status-in {
+        width: 100%;
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 var(--mx);
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+      .status-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+      }
+      .status-cell .k {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+      .status-cell .k::before {
+        content: "> ";
+      }
+      .status-cell .v {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        color: var(--ink-soft);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .status-cell .v.live {
+        color: var(--ink);
+      }
 
-.nav{ display:flex; gap:28px; margin:0 auto; }
-.nav a{
-  font-family:var(--mono); font-size:.74rem; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink-soft);
-  padding-bottom:3px; border-bottom:1px solid transparent;
-  transition:color .2s ease, border-color .2s ease;
-}
-.nav a:hover{ color:var(--ink); border-bottom-color:var(--rule); }
-.nav a.active{ color:var(--ink); border-bottom-color:var(--blue); }
+      .nav {
+        display: flex;
+        gap: 28px;
+        margin: 0 auto;
+      }
+      .nav a {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-bottom: 3px;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .nav a:hover {
+        color: var(--ink);
+        border-bottom-color: var(--rule);
+      }
+      .nav a.active {
+        color: var(--ink);
+        border-bottom-color: var(--blue);
+      }
 
-.status-right{ display:flex; align-items:center; gap:24px; margin-left:auto; }
-.avail{ font-family:var(--mono); font-size:.72rem; color:var(--ink-soft); white-space:nowrap; }
-.sq{
-  display:inline-block; width:7px; height:7px; background:var(--blue);
-  margin-right:8px; vertical-align:middle;
-}
-.status-cta{
-  font-family:var(--mono); font-size:.74rem;
-  border:1px solid var(--ink); padding:11px 20px; white-space:nowrap;
-  transition:background .2s ease, color .2s ease;
-}
-.status-cta:hover{ background:var(--ink); color:var(--paper); }
-@media (max-width:1180px){ .nav{ display:none; } }
-@media (max-width:860px){ .status-cell.opt,.avail{ display:none; } .status-in{ gap:24px; } }
+      .status-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-left: auto;
+      }
+      .avail {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+        white-space: nowrap;
+      }
+      .sq {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: var(--blue);
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      .status-cta {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        border: 1px solid var(--ink);
+        padding: 11px 20px;
+        white-space: nowrap;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .status-cta:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      @media (max-width: 1180px) {
+        .nav {
+          display: none;
+        }
+      }
+      @media (max-width: 860px) {
+        .status-cell.opt,
+        .avail {
+          display: none;
+        }
+        .status-in {
+          gap: 24px;
+        }
+      }
 
-/* ── SHARED ─────────────────────────────────────────────────── */
-.section{ max-width:var(--max-w); margin:0 auto; padding:120px var(--mx) 80px; }
-.section-label{
-  font-family:var(--display); font-weight:500;
-  font-size:clamp(2.2rem,4.2vw,3.4rem); letter-spacing:-.02em; line-height:1;
-  color:var(--ink); margin-bottom:64px;
-  display:flex; align-items:baseline; justify-content:space-between; gap:32px;
-}
-.section-label .meta{
-  font-family:var(--mono); font-size:.7rem; color:var(--ink-soft);
-  letter-spacing:.06em; text-transform:uppercase; font-weight:400;
-  line-height:1.4; text-align:right; max-width:260px;
-}
-.kicker{
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink-soft);
-  padding-bottom:8px; margin-bottom:18px; border-bottom:1px solid var(--rule);
-}
+      /* ── SHARED ─────────────────────────────────────────────────── */
+      .section {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 120px var(--mx) 80px;
+      }
+      .section-label {
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: var(--ink);
+        margin-bottom: 64px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 32px;
+      }
+      .section-label .meta {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-weight: 400;
+        line-height: 1.4;
+        text-align: right;
+        max-width: 260px;
+      }
+      .kicker {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-bottom: 8px;
+        margin-bottom: 18px;
+        border-bottom: 1px solid var(--rule);
+      }
 
-/* Meta rows sit left-clustered with a separator rather than being
+      /* Meta rows sit left-clustered with a separator rather than being
    pushed to opposite page edges, which read as stretched. */
-.metarow{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:0 14px;
-  padding-bottom:16px; margin-bottom:28px; border-bottom:1px solid var(--ink);
-  font-family:var(--mono); font-size:.74rem; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink-soft);
-}
-.metarow .sep{ color:var(--rule); }
-.metarow .now{ color:var(--red); }
-.metarow .focus{ color:var(--red); }
+      .metarow {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 14px;
+        padding-bottom: 16px;
+        margin-bottom: 28px;
+        border-bottom: 1px solid var(--ink);
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .metarow .sep {
+        color: var(--rule);
+      }
+      .metarow .now {
+        color: var(--red);
+      }
+      .metarow .focus {
+        color: var(--red);
+      }
 
-@media (max-width:720px){
-  .section{ padding:64px var(--mx) 48px; }
-  .section-label{ margin-bottom:40px; flex-direction:column; gap:12px; align-items:flex-start; }
-  .section-label .meta{ text-align:left; }
-}
+      @media (max-width: 720px) {
+        .section {
+          padding: 64px var(--mx) 48px;
+        }
+        .section-label {
+          margin-bottom: 40px;
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+        .section-label .meta {
+          text-align: left;
+        }
+      }
 
-/* ── HERO ───────────────────────────────────────────────────── */
-#hero{
-  min-height:100vh; padding-top:calc(var(--bar-h) + 40px);
-  display:grid; grid-template-rows:1fr auto;
-  max-width:var(--max-w); margin:0 auto;
-  padding-left:var(--mx); padding-right:var(--mx); position:relative;
-}
-.hero-corner-l,.hero-corner-r{
-  position:absolute; top:calc(var(--bar-h) + 16px);
-  font-family:var(--mono); font-size:.7rem; color:var(--ink-soft); letter-spacing:.08em;
-}
-.hero-corner-l{ left:var(--mx); }
-.hero-corner-r{ right:var(--mx); }
-.hero-center{
-  align-self:center; padding-top:32px; padding-bottom:64px;
-  display:grid; gap:24px; justify-items:start;
-}
-.hero-name-top{
-  font-family:var(--display); font-weight:500;
-  font-size:clamp(2.4rem,5vw,4.2rem); line-height:.9;
-  letter-spacing:-.02em; text-transform:uppercase;
-}
-.hero-name-top .heavy{ font-weight:900; }
-.hero-tag{
-  font-family:var(--serif); font-style:italic;
-  font-size:clamp(1.25rem,2vw,1.7rem); line-height:1.35;
-  color:var(--ink); max-width:46ch; margin-top:8px;
-}
-.hero-tag .accent{ color:var(--blue); }
-.hero-bottom{
-  display:grid; grid-template-columns:auto 1fr auto; align-items:end; gap:32px;
-  padding-bottom:32px; border-bottom:1px solid var(--ink);
-}
-.hero-bigtitle{
-  font-family:var(--display); font-weight:900;
-  font-size:clamp(3.5rem,12vw,11rem); letter-spacing:-.04em; line-height:.84;
-  text-transform:uppercase; color:var(--ink);
-}
-.hero-bigtitle .alt{
-  font-family:var(--serif); font-weight:400; font-style:italic;
-  letter-spacing:-.02em; text-transform:none; color:var(--blue);
-}
-.hero-bigtitle .red-dot{ color:var(--red); }
-.hero-corner-num{
-  font-family:var(--mono); font-size:.7rem; color:var(--ink-soft);
-  letter-spacing:.08em; align-self:end; padding-bottom:6px;
-}
-@media (max-width:720px){
-  #hero{ min-height:auto; padding-top:calc(var(--bar-h) + 56px); padding-bottom:24px; }
-  .hero-bottom{ grid-template-columns:1fr; gap:12px; }
-  .hero-corner-num{ display:none; }
-}
+      /* ── HERO ───────────────────────────────────────────────────── */
+      #hero {
+        min-height: 100vh;
+        padding-top: calc(var(--bar-h) + 40px);
+        display: grid;
+        grid-template-rows: 1fr auto;
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding-left: var(--mx);
+        padding-right: var(--mx);
+        position: relative;
+      }
+      .hero-corner-l,
+      .hero-corner-r {
+        position: absolute;
+        top: calc(var(--bar-h) + 16px);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.08em;
+      }
+      .hero-corner-l {
+        left: var(--mx);
+      }
+      .hero-corner-r {
+        right: var(--mx);
+      }
+      .hero-center {
+        align-self: center;
+        padding-top: 32px;
+        padding-bottom: 64px;
+        display: grid;
+        gap: 24px;
+        justify-items: start;
+      }
+      .hero-name-top {
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: clamp(2.4rem, 5vw, 4.2rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+      }
+      .hero-name-top .heavy {
+        font-weight: 900;
+      }
+      .hero-tag {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(1.25rem, 2vw, 1.7rem);
+        line-height: 1.35;
+        color: var(--ink);
+        max-width: 46ch;
+        margin-top: 8px;
+      }
+      .hero-tag .accent {
+        color: var(--blue);
+      }
+      .hero-bottom {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: end;
+        gap: 32px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .hero-bigtitle {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: clamp(3.5rem, 12vw, 11rem);
+        letter-spacing: -0.04em;
+        line-height: 0.84;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      .hero-bigtitle .alt {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-style: italic;
+        letter-spacing: -0.02em;
+        text-transform: none;
+        color: var(--blue);
+      }
+      .hero-bigtitle .red-dot {
+        color: var(--red);
+      }
+      .hero-corner-num {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--ink-soft);
+        letter-spacing: 0.08em;
+        align-self: end;
+        padding-bottom: 6px;
+      }
+      @media (max-width: 720px) {
+        #hero {
+          min-height: auto;
+          padding-top: calc(var(--bar-h) + 56px);
+          padding-bottom: 24px;
+        }
+        .hero-bottom {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .hero-corner-num {
+          display: none;
+        }
+      }
 
-/* ── ABOUT ──────────────────────────────────────────────────── */
-.about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:80px; align-items:start; }
-@media (max-width:940px){ .about-grid{ grid-template-columns:1fr; gap:48px; } }
-.about-prose{ font-size:clamp(1.2rem,2vw,1.55rem); line-height:1.45; font-weight:400; }
-.about-prose p + p{ margin-top:1.4em; }
-.about-prose strong{ font-weight:600; }
-.about-prose .blue{ color:var(--blue); }
-@media (max-width:940px){ .about-prose{ font-size:1.2rem; } }
+      /* ── ABOUT ──────────────────────────────────────────────────── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      @media (max-width: 940px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      .about-prose {
+        font-size: clamp(1.2rem, 2vw, 1.55rem);
+        line-height: 1.45;
+        font-weight: 400;
+      }
+      .about-prose p + p {
+        margin-top: 1.4em;
+      }
+      .about-prose strong {
+        font-weight: 600;
+      }
+      .about-prose .blue {
+        color: var(--blue);
+      }
+      @media (max-width: 940px) {
+        .about-prose {
+          font-size: 1.2rem;
+        }
+      }
 
-.about-side{
-  display:grid; grid-template-columns:1fr 1fr; gap:36px;
-  align-content:start; padding-top:10px;
-}
-@media (max-width:520px){ .about-side{ grid-template-columns:1fr; } }
-.about-block{ display:flex; flex-direction:column; gap:10px; }
-.about-block.span-2{ grid-column:1 / -1; }
-.about-block .label{
-  font-family:var(--mono); font-size:.68rem; letter-spacing:.1em;
-  color:var(--ink-soft); text-transform:uppercase;
-}
-.about-block .value{ font-family:var(--mono); font-size:.78rem; color:var(--ink); line-height:1.6; }
-.about-links{ display:flex; flex-direction:column; gap:6px; }
-.about-link{
-  font-family:var(--mono); font-size:.85rem; color:var(--ink);
-  display:inline-flex; align-items:center; gap:9px; width:fit-content; padding:2px 0;
-  transition:color .2s ease;
-}
-.about-link .ico{ width:14px; height:14px; flex:none; fill:currentColor; color:var(--ink-soft); transition:color .2s ease; }
-.about-link:hover{ color:var(--blue); }
-.about-link:hover .ico{ color:var(--blue); }
+      .about-side {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        align-content: start;
+        padding-top: 10px;
+      }
+      @media (max-width: 520px) {
+        .about-side {
+          grid-template-columns: 1fr;
+        }
+      }
+      .about-block {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .about-block.span-2 {
+        grid-column: 1 / -1;
+      }
+      .about-block .label {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+      }
+      .about-block .value {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--ink);
+        line-height: 1.6;
+      }
+      .about-links {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .about-link {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        width: fit-content;
+        padding: 2px 0;
+        transition: color 0.2s ease;
+      }
+      .about-link .ico {
+        width: 14px;
+        height: 14px;
+        flex: none;
+        fill: currentColor;
+        color: var(--ink-soft);
+        transition: color 0.2s ease;
+      }
+      .about-link:hover {
+        color: var(--blue);
+      }
+      .about-link:hover .ico {
+        color: var(--blue);
+      }
 
-/* The resume is a document, not a nav item — it gets its own object. */
-.resume-card{
-  display:flex; align-items:center; gap:14px;
-  border:1px solid var(--ink); padding:14px 16px;
-  transition:background .2s ease, color .2s ease;
-}
-.resume-card:hover{ background:var(--ink); color:var(--paper); }
-.resume-ico{ width:22px; height:22px; flex:none; fill:currentColor; }
-.resume-txt{ display:flex; flex-direction:column; gap:2px; min-width:0; }
-.resume-name{ font-family:var(--mono); font-size:.86rem; letter-spacing:.02em; }
-.resume-meta{ font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
-.resume-card:hover .resume-meta{ color:var(--blue-light); }
-.resume-arrow{ margin-left:auto; font-family:var(--mono); font-size:.9rem; }
-.about-block .value.edu{ color:var(--ink-soft); font-size:.72rem; }
+      /* The resume is a document, not a nav item — it gets its own object. */
+      .resume-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 1px solid var(--ink);
+        padding: 14px 16px;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .resume-card:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .resume-ico {
+        width: 22px;
+        height: 22px;
+        flex: none;
+        fill: currentColor;
+      }
+      .resume-txt {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .resume-name {
+        font-family: var(--mono);
+        font-size: 0.86rem;
+        letter-spacing: 0.02em;
+      }
+      .resume-meta {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .resume-card:hover .resume-meta {
+        color: var(--blue-light);
+      }
+      .resume-arrow {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 0.9rem;
+      }
+      .about-block .value.edu {
+        color: var(--ink-soft);
+        font-size: 0.72rem;
+      }
 
-/* ── EXPERIENCE ─────────────────────────────────────────────── */
-.role{ padding:56px 0; border-top:1px solid var(--rule); }
-.role:first-child{ border-top:0; padding-top:0; }
-.role-grid{ display:grid; grid-template-columns:230px minmax(0,1fr); gap:56px; align-items:start; }
-@media (max-width:940px){ .role-grid{ grid-template-columns:1fr; gap:24px; } }
-.role-title{
-  font-family:var(--display); font-weight:900;
-  font-size:clamp(1.9rem,3.4vw,2.9rem); letter-spacing:-.025em; line-height:.98;
-  text-transform:uppercase;
-}
-.role-org{ font-family:var(--mono); font-size:.76rem; color:var(--ink-soft); margin-top:10px; line-height:1.6; }
-.role-sum{ font-size:1.05rem; line-height:1.6; max-width:64ch; margin-bottom:22px; }
+      /* ── EXPERIENCE ─────────────────────────────────────────────── */
+      .role {
+        padding: 56px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .role:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .role-grid {
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr);
+        gap: 56px;
+        align-items: start;
+      }
+      @media (max-width: 940px) {
+        .role-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+      .role-title {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+        letter-spacing: -0.025em;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+      .role-org {
+        font-family: var(--mono);
+        font-size: 0.76rem;
+        color: var(--ink-soft);
+        margin-top: 10px;
+        line-height: 1.6;
+      }
+      .role-sum {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 64ch;
+        margin-bottom: 22px;
+      }
 
-/* Square bullets, tied to the red/blue square motif used in the
+      /* Square bullets, tied to the red/blue square motif used in the
    header and hero — not the dash markers used previously. */
-.role-list{ list-style:none; }
-.role-list li{
-  position:relative; padding-left:24px; margin-top:13px;
-  font-size:1rem; line-height:1.62; max-width:74ch;
-}
-.role-list li::before{
-  content:""; position:absolute; left:0; top:.6em;
-  width:6px; height:6px; background:var(--blue);
-}
-.role-list strong{ font-weight:600; }
+      .role-list {
+        list-style: none;
+      }
+      .role-list li {
+        position: relative;
+        padding-left: 24px;
+        margin-top: 13px;
+        font-size: 1rem;
+        line-height: 1.62;
+        max-width: 74ch;
+      }
+      .role-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 6px;
+        height: 6px;
+        background: var(--blue);
+      }
+      .role-list strong {
+        font-weight: 600;
+      }
 
-/* ── SYSTEMS ────────────────────────────────────────────────── */
-.sys{ padding:56px 0; border-top:1px solid var(--rule); }
-.sys:first-child{ border-top:0; padding-top:0; }
-.sys-title{
-  font-family:var(--display); font-weight:900;
-  font-size:clamp(2rem,4.4vw,3.8rem); letter-spacing:-.025em; line-height:.95;
-  text-transform:uppercase; margin-bottom:28px;
-}
-.sys-title .alt{
-  font-family:var(--serif); font-style:italic; font-weight:400;
-  text-transform:none; letter-spacing:-.005em; color:var(--blue);
-}
-.sys-grid{ display:grid; grid-template-columns:150px minmax(0,1fr); gap:56px; align-items:start; }
-@media (max-width:940px){
-  .sys-grid{ grid-template-columns:minmax(0,1fr); gap:28px; }
-  .sys-tags{ flex-direction:row; flex-wrap:wrap; }
-}
-.sys-tags{ display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
-.sys-tag{
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em;
-  text-transform:uppercase; padding:8px 11px; border:1px solid var(--ink); color:var(--ink);
-}
-.sys-prose{ font-size:1.05rem; line-height:1.6; max-width:70ch; }
-.sys-prose p + p{ margin-top:14px; }
-.sys-prose strong{ font-weight:600; }
-.sys-live{
-  font-family:var(--mono); font-size:.8rem; display:inline-flex; align-items:center; gap:9px;
-  margin-top:18px; color:var(--ink); border-bottom:1px solid var(--rule); padding-bottom:3px;
-  transition:color .2s ease, border-color .2s ease;
-}
-.sys-live:hover{ color:var(--blue); border-color:var(--blue); }
+      /* ── SYSTEMS ────────────────────────────────────────────────── */
+      .sys {
+        padding: 56px 0;
+        border-top: 1px solid var(--rule);
+      }
+      .sys:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .sys-title {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: clamp(2rem, 4.4vw, 3.8rem);
+        letter-spacing: -0.025em;
+        line-height: 0.95;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .sys-title .alt {
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: -0.005em;
+        color: var(--blue);
+      }
+      .sys-grid {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 56px;
+        align-items: start;
+      }
+      @media (max-width: 940px) {
+        .sys-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 28px;
+        }
+        .sys-tags {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+      .sys-tags {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .sys-tag {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 8px 11px;
+        border: 1px solid var(--ink);
+        color: var(--ink);
+      }
+      .sys-prose {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 70ch;
+      }
+      .sys-prose p + p {
+        margin-top: 14px;
+      }
+      .sys-prose strong {
+        font-weight: 600;
+      }
+      .sys-live {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: 18px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 3px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .sys-live:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+      }
 
-/* Diagram frame: the picture of the system, not a description of it. */
-.diagram{
-  margin-top:32px; border:1px solid var(--ink); background:var(--paper-2);
-  padding:28px 24px 20px; overflow-x:auto;
-}
-.diagram svg{ display:block; width:100%; min-width:680px; height:auto; }
-.diagram-cap{
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink-soft);
-  margin-top:18px; padding-top:12px; border-top:1px solid var(--rule);
-}
-.dg text{ font-family:var(--mono); fill:var(--ink); }
-.dg .cap{ font-size:11px; font-weight:500; letter-spacing:.09em; }
-.dg .sub{ font-size:9.5px; fill:var(--ink-soft); letter-spacing:.05em; }
-.dg .sub.xs{ font-size:8.5px; letter-spacing:.02em; }
-.dg .tiny{ font-size:9px; fill:var(--ink-soft); letter-spacing:.12em; }
-.dg rect.node{ fill:var(--paper); stroke:var(--ink); stroke-width:1; }
-.dg rect.node.blue{ stroke:var(--blue); stroke-width:1.5; }
-.dg rect.node.gate{ fill:var(--red); stroke:var(--red); }
-.dg rect.band{ fill:none; stroke:var(--ink-soft); stroke-width:1; stroke-dasharray:3 3; }
-.dg .gate-t{ fill:var(--paper); font-size:9.5px; letter-spacing:.12em; }
-.dg path,.dg line{ fill:none; stroke:var(--ink); stroke-width:1; }
-.dg .loop{ stroke:var(--blue); stroke-dasharray:3 3; }
-.dg .loop-t{ fill:var(--blue); font-size:9px; letter-spacing:.12em; }
+      /* Diagram frame: the picture of the system, not a description of it. */
+      .diagram {
+        margin-top: 32px;
+        border: 1px solid var(--ink);
+        background: var(--paper-2);
+        padding: 28px 24px 20px;
+        overflow-x: auto;
+      }
+      .diagram svg {
+        display: block;
+        width: 100%;
+        min-width: 680px;
+        height: auto;
+      }
+      .diagram-cap {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid var(--rule);
+      }
+      .dg text {
+        font-family: var(--mono);
+        fill: var(--ink);
+      }
+      .dg .cap {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.09em;
+      }
+      .dg .sub {
+        font-size: 9.5px;
+        fill: var(--ink-soft);
+        letter-spacing: 0.05em;
+      }
+      .dg .sub.xs {
+        font-size: 8.5px;
+        letter-spacing: 0.02em;
+      }
+      .dg .tiny {
+        font-size: 9px;
+        fill: var(--ink-soft);
+        letter-spacing: 0.12em;
+      }
+      .dg rect.node {
+        fill: var(--paper);
+        stroke: var(--ink);
+        stroke-width: 1;
+      }
+      .dg rect.node.blue {
+        stroke: var(--blue);
+        stroke-width: 1.5;
+      }
+      .dg rect.node.gate {
+        fill: var(--red);
+        stroke: var(--red);
+      }
+      .dg rect.band {
+        fill: none;
+        stroke: var(--ink-soft);
+        stroke-width: 1;
+        stroke-dasharray: 3 3;
+      }
+      .dg .gate-t {
+        fill: var(--paper);
+        font-size: 9.5px;
+        letter-spacing: 0.12em;
+      }
+      .dg path,
+      .dg line {
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1;
+      }
+      .dg .loop {
+        stroke: var(--blue);
+        stroke-dasharray: 3 3;
+      }
+      .dg .loop-t {
+        fill: var(--blue);
+        font-size: 9px;
+        letter-spacing: 0.12em;
+      }
 
-/* ── PRINCIPLES ─────────────────────────────────────────────── */
-.prin-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
-@media (max-width:1100px){ .prin-grid{ grid-template-columns:repeat(2,1fr); gap:40px; } }
-@media (max-width:620px){ .prin-grid{ grid-template-columns:1fr; gap:36px; } }
-.prin-num{
-  font-family:var(--display); font-weight:900; font-size:2.4rem; line-height:1;
-  color:var(--blue); margin-bottom:12px;
-}
-.prin-name{
-  font-family:var(--mono); font-size:.74rem; letter-spacing:.12em;
-  text-transform:uppercase; padding-bottom:10px; margin-bottom:16px;
-  border-bottom:1px solid var(--ink);
-}
-.prin-grid p{ font-size:.98rem; line-height:1.62; }
+      /* ── PRINCIPLES ─────────────────────────────────────────────── */
+      .prin-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+      }
+      @media (max-width: 1100px) {
+        .prin-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+        }
+      }
+      @media (max-width: 620px) {
+        .prin-grid {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+      }
+      .prin-num {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: 2.4rem;
+        line-height: 1;
+        color: var(--blue);
+        margin-bottom: 12px;
+      }
+      .prin-name {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .prin-grid p {
+        font-size: 0.98rem;
+        line-height: 1.62;
+      }
 
-/* ── CONTACT ────────────────────────────────────────────────── */
-.contact{ border-top:1px solid var(--ink); margin-top:60px; }
-.contact-in{ max-width:var(--max-w); margin:0 auto; padding:96px var(--mx) 40px; }
-.contact-grid{ display:grid; grid-template-columns:auto 1fr; gap:72px; align-items:start; margin-bottom:72px; }
-@media (max-width:940px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
-.contact-mono{
-  font-family:var(--display); font-weight:900; font-size:clamp(3rem,7vw,6rem);
-  line-height:.86; letter-spacing:-.03em;
-}
-.contact-mono .red-dot{ color:var(--red); }
-.cfields{ display:grid; grid-template-columns:repeat(3,auto); gap:32px; justify-content:start; }
-@media (max-width:720px){ .cfields{ grid-template-columns:1fr; gap:20px; } }
-.cfield .k{ font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--red); margin-bottom:6px; }
-.cfield .v{ font-family:var(--mono); font-size:.8rem; color:var(--ink); }
-.contact-line{
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink-soft);
-  padding-bottom:20px; border-bottom:1px solid var(--ink); margin-bottom:28px;
-}
-.contact-links{ display:flex; flex-wrap:wrap; gap:20px 56px; margin-bottom:64px; }
-.contact-links a{
-  font-family:var(--mono); font-size:.92rem;
-  display:inline-flex; align-items:center; gap:10px;
-  border-bottom:1px solid var(--rule); padding-bottom:3px;
-  transition:color .2s ease, border-color .2s ease;
-}
-.contact-links a:hover{ color:var(--blue); border-color:var(--blue); }
-.contact-foot{
-  display:flex; flex-wrap:wrap; gap:12px 40px; justify-content:space-between;
-  border-top:1px solid var(--rule); padding-top:20px;
-}
-.contact-foot span{ font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); }
+      /* ── CONTACT ────────────────────────────────────────────────── */
+      .contact {
+        border-top: 1px solid var(--ink);
+        margin-top: 60px;
+      }
+      .contact-in {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 96px var(--mx) 40px;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 72px;
+        align-items: start;
+        margin-bottom: 72px;
+      }
+      @media (max-width: 940px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      .contact-mono {
+        font-family: var(--display);
+        font-weight: 900;
+        font-size: clamp(3rem, 7vw, 6rem);
+        line-height: 0.86;
+        letter-spacing: -0.03em;
+      }
+      .contact-mono .red-dot {
+        color: var(--red);
+      }
+      .cfields {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 32px;
+        justify-content: start;
+      }
+      @media (max-width: 720px) {
+        .cfields {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+      .cfield .k {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 6px;
+      }
+      .cfield .v {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--ink);
+      }
+      .contact-line {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--ink);
+        margin-bottom: 28px;
+      }
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px 56px;
+        margin-bottom: 64px;
+      }
+      .contact-links a {
+        font-family: var(--mono);
+        font-size: 0.92rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 3px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .contact-links a:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+      }
+      .contact-foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 40px;
+        justify-content: space-between;
+        border-top: 1px solid var(--rule);
+        padding-top: 20px;
+      }
+      .contact-foot span {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
 
-/* ── REVEAL ─────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: no-preference){
-  .rv{ opacity:0; transform:translateY(16px); transition:opacity .7s cubic-bezier(.22,.7,.3,1), transform .7s cubic-bezier(.22,.7,.3,1); }
-  .rv.in{ opacity:1; transform:none; }
-}
-</style>
-</head>
-<body>
+      /* ── REVEAL ─────────────────────────────────────────────────── */
+      @media (prefers-reduced-motion: no-preference) {
+        .rv {
+          opacity: 0;
+          transform: translateY(16px);
+          transition:
+            opacity 0.7s cubic-bezier(0.22, 0.7, 0.3, 1),
+            transform 0.7s cubic-bezier(0.22, 0.7, 0.3, 1);
+        }
+        .rv.in {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="status-bar">
+      <div class="status-in">
+        <div class="status-cell">
+          <span class="k">Umang Dubey</span>
+          <span class="v live">Backend AI Engineer</span>
+        </div>
 
-<header class="status-bar">
-  <div class="status-in">
-    <div class="status-cell">
-      <span class="k">Umang Dubey</span>
-      <span class="v live">Backend AI Engineer</span>
-    </div>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#systems">Systems</a>
+          <a href="#principles">Engineering</a>
+        </nav>
 
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#systems">Systems</a>
-      <a href="#principles">Engineering</a>
-    </nav>
-
-    <div class="status-right">
-      <span class="avail"><i class="sq"></i>Open to new roles</span>
-      <a class="status-cta" href="#contact">Get in touch</a>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <!-- ── HERO ───────────────────────────────────────────── -->
-  <section id="hero">
-    <span class="hero-corner-l">V3.0 / 2026.09.15</span>
-    <span class="hero-corner-r">Portfolio / Vol. I</span>
-
-    <div class="hero-center">
-      <h1 class="hero-name-top">UMANG <span class="heavy">DUBEY</span></h1>
-      <p class="hero-tag">
-        Distributed systems engineer by foundation. I build
-        high-throughput backend platforms
-        and the <span class="accent">AI agent infrastructure</span> that operates them.
-      </p>
-    </div>
-
-    <div class="hero-bottom">
-      <span class="hero-corner-num">01</span>
-      <p class="hero-bigtitle">
-        BACKEND<br><span class="alt">ai engineer</span><span class="red-dot">.</span>
-      </p>
-      <span class="hero-corner-num">02</span>
-    </div>
-  </section>
-
-  <!-- ── 01 ABOUT ───────────────────────────────────────── -->
-  <section class="section" id="about">
-    <div class="section-label">
-      <span>About</span>
-      <span class="meta">01 / A little about me</span>
-    </div>
-
-    <div class="about-grid rv">
-      <div class="about-prose">
-        <p>I'm a <strong>Backend AI Engineer</strong> building scalable systems where reliability, performance and cost matter.</p>
-        <p>At <strong>CoinSwitch</strong> I work on the infrastructure powering a high-volume trading platform that handles 30M+ orders a day, from access control and delegated trading to the systems behind the order pipeline. I've also driven improvements like a 93% reduction in observability cost, using the same approach I bring to performance work: understand the real bottleneck, then engineer around it.</p>
-        <p>Alongside backend and distributed systems, I build the <span class="blue">AI layer</span> on top. LLMs, AI agents, MCP and AI-native development, used to make software smarter and automate real workflows.</p>
-        <p>I enjoy taking problems from 0→1: starting with the use case, designing the right architecture, and turning an idea into a production system.</p>
-        <p>My interests sit at the intersection of <strong>distributed systems and agentic AI</strong>, from partitioning, backpressure and consistency trade-offs to tool design, orchestration and guardrails.</p>
-        <p>Always building. Always learning. Looking for the next hard problem to take from 0→1.</p>
+        <div class="status-right">
+          <span class="avail"><i class="sq"></i>Open to new roles</span>
+          <a class="status-cta" href="#contact">Get in touch</a>
+        </div>
       </div>
+    </header>
 
-      <aside class="about-side">
-        <div class="about-block span-2">
-          <span class="label">Links</span>
-          <div class="about-links">
-            <a class="about-link" href="https://www.linkedin.com/in/umang-dubey-007/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.03-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9Z"/></svg>LinkedIn</a>
-            <a class="about-link" href="https://github.com/dev-umang-here" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
-            <a class="about-link" href="mailto:umangbackend@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.2L4.6 7.2 4 8l8 6.5L20 8l-.6-.8L12 13.2Z"/></svg>Email</a>
+    <main>
+      <!-- ── HERO ───────────────────────────────────────────── -->
+      <section id="hero">
+        <span class="hero-corner-l">V3.0 / 2026.09.15</span>
+        <span class="hero-corner-r">Portfolio / Vol. I</span>
+
+        <div class="hero-center">
+          <h1 class="hero-name-top">UMANG <span class="heavy">DUBEY</span></h1>
+          <p class="hero-tag">
+            Distributed systems engineer by foundation. I build high-throughput
+            backend platforms and the
+            <span class="accent">AI agent infrastructure</span> that operates
+            them.
+          </p>
+        </div>
+
+        <div class="hero-bottom">
+          <span class="hero-corner-num">01</span>
+          <p class="hero-bigtitle">
+            BACKEND<br /><span class="alt">ai engineer</span
+            ><span class="red-dot">.</span>
+          </p>
+          <span class="hero-corner-num">02</span>
+        </div>
+      </section>
+
+      <!-- ── 01 ABOUT ───────────────────────────────────────── -->
+      <section class="section" id="about">
+        <div class="section-label">
+          <span>About</span>
+          <span class="meta">01 / A little about me</span>
+        </div>
+
+        <div class="about-grid rv">
+          <div class="about-prose">
+            <p>
+              I'm a <strong>Backend AI Engineer</strong> building scalable
+              systems where reliability, performance and cost matter.
+            </p>
+            <p>
+              At <strong>CoinSwitch</strong> I work on the infrastructure
+              powering a high-volume trading platform that handles 30M+ orders a
+              day, from access control and delegated trading to the systems
+              behind the order pipeline. I've also driven improvements like a
+              93% reduction in observability cost, using the same approach I
+              bring to performance work: understand the real bottleneck, then
+              engineer around it.
+            </p>
+            <p>
+              Alongside backend and distributed systems, I build the
+              <span class="blue">AI layer</span> on top. LLMs, AI agents, MCP
+              and AI-native development, used to make software smarter and
+              automate real workflows.
+            </p>
+            <p>
+              I enjoy taking problems from 0→1: starting with the use case,
+              designing the right architecture, and turning an idea into a
+              production system.
+            </p>
+            <p>
+              My interests sit at the intersection of
+              <strong>distributed systems and agentic AI</strong>, from
+              partitioning, backpressure and consistency trade-offs to tool
+              design, orchestration and guardrails.
+            </p>
+            <p>
+              I enjoy taking problems from 0→1: Always building. Always
+              learning. Looking for the next opportunity.
+            </p>
+          </div>
+
+          <aside class="about-side">
+            <div class="about-block span-2">
+              <span class="label">Links</span>
+              <div class="about-links">
+                <a
+                  class="about-link"
+                  href="https://www.linkedin.com/in/umang-dubey-007/"
+                  target="_blank"
+                  rel="noopener"
+                  ><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.03-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9Z"
+                    /></svg
+                  >LinkedIn</a
+                >
+                <a
+                  class="about-link"
+                  href="https://github.com/dev-umang-here"
+                  target="_blank"
+                  rel="noopener"
+                  ><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"
+                    /></svg
+                  >GitHub</a
+                >
+                <a class="about-link" href="mailto:umangbackend@gmail.com"
+                  ><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.2L4.6 7.2 4 8l8 6.5L20 8l-.6-.8L12 13.2Z"
+                    /></svg
+                  >Email</a
+                >
+              </div>
+            </div>
+
+            <a
+              class="resume-card span-2"
+              href="umang-dubey-resume.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="resume-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 13h8v1.6H8V13Zm0 3.2h8v1.6H8v-1.6ZM8 9.8h4v1.6H8V9.8Z"
+                />
+              </svg>
+              <span class="resume-txt">
+                <span class="resume-name">Résumé</span>
+                <span class="resume-meta">PDF · 1 page · updated Sep 2026</span>
+              </span>
+              <span class="resume-arrow">↗</span>
+            </a>
+
+            <div class="about-block span-2">
+              <span class="label">Technical</span>
+              <span class="value"
+                >Go · Java · Python · AI Cost Optimization<br />Kafka ·
+                PostgreSQL · TimescaleDB · Redis<br />AWS · Docker ·
+                Kubernetes<br />MCP · AI agents · RAG · AI Deployment</span
+              >
+            </div>
+
+            <div class="about-block span-2">
+              <span class="value edu"
+                >B.Tech CS · AI minor · IET Lucknow · GPA 9.0</span
+              >
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ── 03 EXPERIENCE ──────────────────────────────────── -->
+      <section class="section" id="experience">
+        <div class="section-label">
+          <span>Experience</span>
+          <span class="meta"
+            >02 / Three roles, 2022–2026<br />Fintech · AdTech · DevTools</span
+          >
+        </div>
+
+        <article class="role rv">
+          <div class="metarow">
+            <span>Nov 2025 — <span class="now">Present</span></span>
+            <span class="sep">/</span>
+            <span>Bengaluru, India</span>
+            <span class="sep">/</span>
+            <span>Fintech · Crypto trading</span>
+          </div>
+          <div class="role-grid">
+            <div>
+              <h3 class="role-title">Senior Software<br />Engineer</h3>
+              <p class="role-org">CoinSwitch<br />1M+ active users</p>
+            </div>
+            <div>
+              <p class="role-sum">
+                I own access control and reliability for the trading services at
+                the centre of the platform — the path more than a million users
+                trade through every day — and I build the agent tooling the
+                on-call team runs on.
+              </p>
+              <ul class="role-list">
+                <li>
+                  Built a
+                  <strong>delegated, role-based access system</strong> as a
+                  single unified service, letting 1M+ users securely grant
+                  control of their trading accounts to someone else. It is now
+                  the authorisation path for 10+ product lines, with every
+                  access decision routed through one auditable point.
+                </li>
+                <li>
+                  Re-architected the high-volume trading services for scale:
+                  modularised the core, enforced
+                  <strong>idempotent order handling</strong>, expanded automated
+                  coverage, and took ownership of incident response, cutting
+                  MTTR by 60% and taking P95 order latency down by an order of
+                  magnitude.
+                </li>
+                <li>
+                  Delivered org-wide <strong>INR→USDT conversion</strong> with
+                  real-time rate adjustment and hedging-backed position
+                  protection, now processing 30M+ orders daily under strict
+                  consistency requirements.
+                </li>
+                <li>
+                  Shipped <strong>MCP-based AI agents</strong> for on-call and
+                  operational workflows, and rebuilt logging, metrics and
+                  alerting around genuine paging signals rather than volume,
+                  cutting observability cost by 93%.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="role rv">
+          <div class="metarow">
+            <span>Oct 2024 — Oct 2025</span>
+            <span class="sep">/</span>
+            <span>Bengaluru, India</span>
+            <span class="sep">/</span>
+            <span>AdTech · AI marketing platform</span>
+          </div>
+          <div class="role-grid">
+            <div>
+              <h3 class="role-title">Senior Software<br />Engineer</h3>
+              <p class="role-org">Pixis.ai<br />High-concurrency pipelines</p>
+            </div>
+            <div>
+              <p class="role-sum">
+                Owned performance and concurrency across the core backend, and
+                mentored engineers through design to delivery.
+              </p>
+              <ul class="role-list">
+                <li>
+                  Cut memory footprint by 35% and P95 latency by 70% across
+                  critical services by eliminating storage inefficiencies,
+                  refactoring data models, and migrating graph-heavy workloads
+                  to <strong>TimescaleDB</strong>.
+                </li>
+                <li>
+                  Redesigned a high-concurrency consumer service around a
+                  <strong>bounded worker pool</strong>. Unbounded goroutine
+                  growth was the real failure mode; tuned concurrency limits and
+                  proper backpressure lifted throughput 50%, to 20K+
+                  messages/sec under burst traffic.
+                </li>
+                <li>
+                  Built live performance-insight and notification features in
+                  Prism, surfacing campaign alerts that let marketing teams
+                  react 3x faster.
+                </li>
+                <li>
+                  Mentored 3 engineers on code quality and review practice,
+                  halving PR turnaround, while owning features from HLD through
+                  delivery.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="role rv">
+          <div class="metarow">
+            <span>Jul 2022 — Sep 2024</span>
+            <span class="sep">/</span>
+            <span>Noida, India</span>
+            <span class="sep">/</span>
+            <span>DevTools · Cloud testing</span>
+          </div>
+          <div class="role-grid">
+            <div>
+              <h3 class="role-title">Software<br />Engineer</h3>
+              <p class="role-org">
+                LambdaTest<br />Infrastructure &amp; platform
+              </p>
+            </div>
+            <div>
+              <p class="role-sum">
+                Consolidated fragmented infrastructure into single services, and
+                replaced manual, engineer-hours-heavy processes with
+                self-service tooling.
+              </p>
+              <ul class="role-list">
+                <li>
+                  Led the consolidation of distributed inventory services into
+                  <strong>one microservice</strong>, cutting user launch time by
+                  45% and eliminating device unavailability through tighter
+                  state consistency and service orchestration.
+                </li>
+                <li>
+                  Replaced manual database entries for device onboarding with a
+                  self-service integration workflow, taking the deployment cycle
+                  from a week to a day.
+                </li>
+                <li>
+                  Designed an
+                  <strong>AI-powered accessibility platform</strong> end to end,
+                  with proof-of-concept integrations for enterprise clients,
+                  enabling systematic compliance checks across 15+ services and
+                  cutting manual audit effort by 60%.
+                </li>
+                <li>
+                  Decoupled the frontend into independently deployable modules,
+                  cutting page load time by 40% and cross-team release cycles by
+                  30% across 5+ internal teams.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── 04 SYSTEMS ─────────────────────────────────────── -->
+      <section class="section" id="systems">
+        <div class="section-label">
+          <span>Systems</span>
+          <span class="meta">03 / Production &amp; self-directed</span>
+        </div>
+
+        <!-- Self-healing on-call agent -->
+        <article class="sys rv">
+          <div class="metarow">
+            <span class="focus">TRIAGE↓</span>
+            <span class="sep">/</span>
+            <span>Alert-to-remediation loop</span>
+            <span class="sep">/</span>
+            <span>Agentic AI · SRE</span>
+          </div>
+          <h3 class="sys-title">
+            Self-healing<br /><span class="alt">on-call agent</span>
+          </h3>
+
+          <div class="sys-grid">
+            <div class="sys-tags">
+              <span class="sys-tag">Claude Agent SDK</span>
+              <span class="sys-tag">MCP</span>
+              <span class="sys-tag">Prometheus</span>
+              <span class="sys-tag">Kafka</span>
+              <span class="sys-tag">Kubernetes</span>
+            </div>
+
+            <div>
+              <div class="sys-prose">
+                <p>
+                  An autonomous incident-response system for a microservice
+                  stack. Most on-call incidents repeat — a crash-looping worker,
+                  a bad deploy, a poison message, an OOM — and each has a known
+                  diagnosis path. The slow part is a human waking up and
+                  orienting.
+                </p>
+                <p>
+                  Five agents run as a pipeline behind a
+                  <strong>deterministic Python state machine</strong>: detector,
+                  diagnostician, remediator, verifier, librarian. Telling
+                  failures apart needs reasoning — a stopped consumer and a
+                  crash-looping consumer look identical in the lag metric but
+                  need opposite fixes — so the agents own judgement while the
+                  orchestrator owns lifecycle and sequencing.
+                </p>
+                <p>
+                  The safety layer is <strong>code, never the model</strong>: an
+                  allow-list, a confidence gate and a circuit breaker sit
+                  between any proposal and production, and the MCP tool surface
+                  separates read-only tools from destructive ones outright.
+                </p>
+              </div>
+
+              <a
+                class="sys-live"
+                href="https://github.com/dev-umang-here/ai-sre-agent"
+                target="_blank"
+                rel="noopener"
+                >github.com/dev-umang-here/ai-sre-agent ↗</a
+              >
+
+              <figure class="diagram">
+                <svg
+                  class="dg"
+                  viewBox="0 0 900 300"
+                  role="img"
+                  aria-label="A deterministic orchestrator sequences five agents: detector, diagnostician, remediator, verifier and librarian. A guardrail layer of allow-list, confidence gate and circuit breaker sits below them, and beneath that an MCP tool layer split into read-only and destructive tools."
+                >
+                  <defs>
+                    <marker
+                      id="sa"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto-start-reverse"
+                    >
+                      <path
+                        d="M0 0 L10 5 L0 10 z"
+                        fill="#0A1024"
+                        stroke="none"
+                      />
+                    </marker>
+                    <marker
+                      id="sab"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto-start-reverse"
+                    >
+                      <path
+                        d="M0 0 L10 5 L0 10 z"
+                        fill="#1E40FF"
+                        stroke="none"
+                      />
+                    </marker>
+                  </defs>
+
+                  <!-- orchestrator -->
+                  <rect class="node" x="6" y="8" width="888" height="34" />
+                  <text class="cap" x="20" y="30">ORCHESTRATOR</text>
+                  <text class="sub xs" x="150" y="30">
+                    deterministic state machine · owns the incident lifecycle
+                  </text>
+
+                  <!-- agent team -->
+                  <rect
+                    class="node blue"
+                    x="6"
+                    y="68"
+                    width="168"
+                    height="58"
+                  />
+                  <text class="cap" x="20" y="92">DETECTOR</text>
+                  <text class="sub xs" x="20" y="110">
+                    alert + signal intake
+                  </text>
+                  <line
+                    x1="174"
+                    y1="97"
+                    x2="196"
+                    y2="97"
+                    marker-end="url(#sa)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="202"
+                    y="68"
+                    width="168"
+                    height="58"
+                  />
+                  <text class="cap" x="216" y="92">DIAGNOSTICIAN</text>
+                  <text class="sub xs" x="216" y="110">
+                    root-cause hypothesis
+                  </text>
+                  <line
+                    x1="370"
+                    y1="97"
+                    x2="392"
+                    y2="97"
+                    marker-end="url(#sa)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="398"
+                    y="68"
+                    width="168"
+                    height="58"
+                  />
+                  <text class="cap" x="412" y="92">REMEDIATOR</text>
+                  <text class="sub xs" x="412" y="110">
+                    restart, scale, rollback
+                  </text>
+                  <line
+                    x1="566"
+                    y1="97"
+                    x2="588"
+                    y2="97"
+                    marker-end="url(#sa)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="594"
+                    y="68"
+                    width="150"
+                    height="58"
+                  />
+                  <text class="cap" x="608" y="92">VERIFIER</text>
+                  <text class="sub xs" x="608" y="110">
+                    did it actually fix?
+                  </text>
+                  <line
+                    x1="744"
+                    y1="97"
+                    x2="766"
+                    y2="97"
+                    marker-end="url(#sa)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="772"
+                    y="68"
+                    width="122"
+                    height="58"
+                  />
+                  <text class="cap" x="786" y="92">LIBRARIAN</text>
+                  <text class="sub xs" x="786" y="110">runbook store</text>
+
+                  <!-- guardrail layer -->
+                  <rect
+                    class="node gate"
+                    x="6"
+                    y="152"
+                    width="888"
+                    height="30"
+                  />
+                  <text class="gate-t" x="20" y="171">GUARDRAIL LAYER</text>
+                  <text class="gate-t" x="170" y="171">
+                    ALLOW-LIST · CONFIDENCE GATE · CIRCUIT BREAKER
+                  </text>
+                  <text class="gate-t" x="600" y="171">
+                    — IN CODE, NEVER THE LLM
+                  </text>
+
+                  <!-- tool layer -->
+                  <rect class="node" x="6" y="208" width="436" height="52" />
+                  <text class="cap" x="20" y="230">MCP TOOLS — READ-ONLY</text>
+                  <text class="sub xs" x="20" y="248">
+                    metrics · logs · traces · deploy history
+                  </text>
+
+                  <rect class="node" x="458" y="208" width="436" height="52" />
+                  <text class="cap" x="472" y="230">
+                    MCP TOOLS — DESTRUCTIVE
+                  </text>
+                  <text class="sub xs" x="472" y="248">
+                    docker · k8s · kafka offsets · rollback
+                  </text>
+
+                  <line
+                    x1="224"
+                    y1="182"
+                    x2="224"
+                    y2="208"
+                    stroke="#545C75"
+                    stroke-dasharray="2 3"
+                  />
+                  <line
+                    x1="676"
+                    y1="182"
+                    x2="676"
+                    y2="208"
+                    stroke="#545C75"
+                    stroke-dasharray="2 3"
+                  />
+
+                  <!-- librarian feedback -->
+                  <path
+                    class="loop"
+                    d="M833 126 L833 140 L286 140 L286 126"
+                    marker-end="url(#sab)"
+                  />
+                  <text class="loop-t" x="470" y="284">
+                    OUTCOMES FEED THE RUNBOOK STORE — THE NEXT INCIDENT STARTS
+                    WARMER
+                  </text>
+                </svg>
+                <figcaption class="diagram-cap">
+                  Fig. 01 — Agents reason. Code decides what they're allowed to
+                  touch.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Intellr -->
+        <article class="sys rv">
+          <div class="metarow">
+            <span class="focus">IN PRODUCTION</span>
+            <span class="sep">/</span>
+            <span>intellr.io</span>
+            <span class="sep">/</span>
+            <span>Multi-agent platform</span>
+          </div>
+          <h3 class="sys-title">
+            Intellr<br /><span class="alt">hiring platform</span>
+          </h3>
+
+          <div class="sys-grid">
+            <div class="sys-tags">
+              <span class="sys-tag">Multi-agent</span>
+              <span class="sys-tag">Voice AI</span>
+              <span class="sys-tag">Orchestration</span>
+              <span class="sys-tag">Event pipelines</span>
+            </div>
+
+            <div>
+              <div class="sys-prose">
+                <p>
+                  A live AI hiring platform built around
+                  <strong
+                    >three autonomous agents behind a shared orchestration
+                    layer</strong
+                  >. A screening agent scores candidates across resume, LinkedIn
+                  and GitHub signals; a voice agent runs real-time
+                  conversational interviews with adaptive follow-ups; an
+                  automation agent advances candidates through rule-driven
+                  pipelines.
+                </p>
+                <p>
+                  The engineering problem is not the models, it's everything
+                  around them: keeping voice turn-taking inside a latency
+                  budget, making scoring reproducible enough to audit, and
+                  holding pipeline state consistent while three agents and a
+                  calendar integration all write to it. The orchestration layer
+                  is deterministic on purpose, so agent behaviour stays
+                  observable and replayable.
+                </p>
+              </div>
+
+              <a
+                class="sys-live"
+                href="https://intellr.io/"
+                target="_blank"
+                rel="noopener"
+                >intellr.io ↗</a
+              >
+
+              <figure class="diagram">
+                <svg
+                  class="dg"
+                  viewBox="0 0 900 230"
+                  role="img"
+                  aria-label="Applicants enter a screening agent, then a voice interview agent, then an automation agent that advances candidates and syncs ATS and calendar, all sequenced by a deterministic orchestration layer."
+                >
+                  <defs>
+                    <marker
+                      id="ia"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto-start-reverse"
+                    >
+                      <path
+                        d="M0 0 L10 5 L0 10 z"
+                        fill="#0A1024"
+                        stroke="none"
+                      />
+                    </marker>
+                  </defs>
+
+                  <rect class="node" x="6" y="34" width="162" height="64" />
+                  <text class="cap" x="20" y="60">APPLICANTS</text>
+                  <text class="sub xs" x="20" y="78">
+                    resume · profile · repo
+                  </text>
+
+                  <line
+                    x1="168"
+                    y1="66"
+                    x2="196"
+                    y2="66"
+                    marker-end="url(#ia)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="202"
+                    y="34"
+                    width="162"
+                    height="64"
+                  />
+                  <text class="cap" x="216" y="60">SCREENING AGENT</text>
+                  <text class="sub xs" x="216" y="78">
+                    multi-signal scoring
+                  </text>
+
+                  <line
+                    x1="364"
+                    y1="66"
+                    x2="392"
+                    y2="66"
+                    marker-end="url(#ia)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="398"
+                    y="34"
+                    width="162"
+                    height="64"
+                  />
+                  <text class="cap" x="412" y="60">VOICE AGENT</text>
+                  <text class="sub xs" x="412" y="78">adaptive interview</text>
+
+                  <line
+                    x1="560"
+                    y1="66"
+                    x2="588"
+                    y2="66"
+                    marker-end="url(#ia)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="594"
+                    y="34"
+                    width="162"
+                    height="64"
+                  />
+                  <text class="cap" x="608" y="60">AUTOMATION</text>
+                  <text class="sub xs" x="608" y="78">IF/THEN advance</text>
+
+                  <line
+                    x1="756"
+                    y1="66"
+                    x2="784"
+                    y2="66"
+                    marker-end="url(#ia)"
+                  />
+
+                  <rect class="node" x="790" y="34" width="104" height="64" />
+                  <text class="cap" x="804" y="60">ATS +</text>
+                  <text class="cap" x="804" y="76">CALENDAR</text>
+
+                  <!-- orchestration band -->
+                  <rect class="band" x="202" y="126" width="554" height="42" />
+                  <text class="cap" x="216" y="152">
+                    DETERMINISTIC ORCHESTRATION LAYER
+                  </text>
+                  <text class="sub xs" x="530" y="152">
+                    pipeline state · retries · audit trail
+                  </text>
+                  <line
+                    x1="283"
+                    y1="98"
+                    x2="283"
+                    y2="126"
+                    stroke="#545C75"
+                    stroke-dasharray="2 3"
+                  />
+                  <line
+                    x1="479"
+                    y1="98"
+                    x2="479"
+                    y2="126"
+                    stroke="#545C75"
+                    stroke-dasharray="2 3"
+                  />
+                  <line
+                    x1="675"
+                    y1="98"
+                    x2="675"
+                    y2="126"
+                    stroke="#545C75"
+                    stroke-dasharray="2 3"
+                  />
+
+                  <text class="tiny" x="216" y="196">
+                    EVERY AGENT DECISION IS SCORED, LOGGED AND REPLAYABLE
+                  </text>
+                </svg>
+                <figcaption class="diagram-cap">
+                  Fig. 02 — Agents do the judgement. The orchestrator owns the
+                  state.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Instamart -->
+        <article class="sys rv">
+          <div class="metarow">
+            <span class="focus">PLANNING↑</span>
+            <span class="sep">/</span>
+            <span>Preferences-to-basket</span>
+            <span class="sep">/</span>
+            <span>Agent orchestration</span>
+          </div>
+          <h3 class="sys-title">
+            Instamart<br /><span class="alt">grocery agent</span>
+          </h3>
+
+          <div class="sys-grid">
+            <div class="sys-tags">
+              <span class="sys-tag">MCP tool server</span>
+              <span class="sys-tag">LLM planning</span>
+            </div>
+
+            <div>
+              <div class="sys-prose">
+                <p>
+                  An agent built on Swiggy Builders Club's
+                  <strong>Instamart MCP server</strong> that turns dietary
+                  preferences into a weekly meal plan, then resolves that plan
+                  into a real basket — SKU matching, substitutions when stock
+                  fails — and places the order.
+                </p>
+                <p>
+                  Built first for people in Bengaluru who don't know what to
+                  cook. Checkout is deliberately approval-gated: an agent that
+                  spends your money unprompted is a bug, not a feature.
+                </p>
+              </div>
+
+              <figure class="diagram">
+                <svg
+                  class="dg"
+                  viewBox="0 0 900 190"
+                  role="img"
+                  aria-label="Dietary preferences become a weekly meal plan, which resolves to a basket through the Instamart MCP server, held at a human approval gate before the order is placed."
+                >
+                  <defs>
+                    <marker
+                      id="ga"
+                      viewBox="0 0 10 10"
+                      refX="9"
+                      refY="5"
+                      markerWidth="7"
+                      markerHeight="7"
+                      orient="auto-start-reverse"
+                    >
+                      <path
+                        d="M0 0 L10 5 L0 10 z"
+                        fill="#0A1024"
+                        stroke="none"
+                      />
+                    </marker>
+                  </defs>
+
+                  <rect class="node" x="6" y="50" width="185" height="66" />
+                  <text class="cap" x="22" y="78">PREFERENCES</text>
+                  <text class="sub xs" x="22" y="96">
+                    diet · budget · household
+                  </text>
+
+                  <line
+                    x1="191"
+                    y1="83"
+                    x2="232"
+                    y2="83"
+                    marker-end="url(#ga)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="238"
+                    y="50"
+                    width="185"
+                    height="66"
+                  />
+                  <text class="cap" x="254" y="78">MEAL PLAN</text>
+                  <text class="sub xs" x="254" y="96">
+                    LLM planning · 7 days
+                  </text>
+
+                  <line
+                    x1="423"
+                    y1="83"
+                    x2="464"
+                    y2="83"
+                    marker-end="url(#ga)"
+                  />
+
+                  <rect
+                    class="node blue"
+                    x="470"
+                    y="50"
+                    width="185"
+                    height="66"
+                  />
+                  <text class="cap" x="486" y="78">RESOLVE BASKET</text>
+                  <text class="sub xs" x="486" y="96">
+                    Instamart MCP server
+                  </text>
+                  <text class="tiny" x="486" y="134">
+                    SKU MATCH · SUBSTITUTIONS
+                  </text>
+                  <line
+                    x1="486"
+                    y1="122"
+                    x2="645"
+                    y2="122"
+                    stroke="#1E40FF"
+                    stroke-dasharray="2 3"
+                  />
+
+                  <line
+                    x1="655"
+                    y1="83"
+                    x2="696"
+                    y2="83"
+                    marker-end="url(#ga)"
+                  />
+
+                  <rect
+                    class="node gate"
+                    x="702"
+                    y="8"
+                    width="150"
+                    height="26"
+                  />
+                  <text class="gate-t" x="716" y="25">HUMAN APPROVAL</text>
+                  <line x1="777" y1="34" x2="777" y2="48" stroke="#E8200C" />
+
+                  <rect class="node" x="702" y="50" width="185" height="66" />
+                  <text class="cap" x="718" y="78">PLACE ORDER</text>
+                  <text class="sub xs" x="718" y="96">gated checkout</text>
+                </svg>
+                <figcaption class="diagram-cap">
+                  Fig. 03 — Planning is automated. Spending is not.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ── 05 HOW I WORK ──────────────────────────────────── -->
+      <section class="section" id="principles">
+        <div class="section-label">
+          <span>Engineering</span>
+          <span class="meta">04 / How I build and operate systems</span>
+        </div>
+
+        <div class="prin-grid rv">
+          <div>
+            <p class="prin-num">01</p>
+            <p class="prin-name">Architecture</p>
+            <p>
+              HLD to LLD. I design the system around what it has to solve, and
+              review the designs that ship alongside mine.
+            </p>
+          </div>
+          <div>
+            <p class="prin-num">02</p>
+            <p class="prin-name">Ownership</p>
+            <p>
+              Design through on-call. The rollout, the dashboards, the SLO, and
+              the escalation path when it breaks.
+            </p>
+          </div>
+          <div>
+            <p class="prin-num">03</p>
+            <p class="prin-name">Reliability</p>
+            <p>
+              Idempotency, backpressure, circuit breakers, graceful
+              degradation. Every dependency has a defined failure behaviour.
+            </p>
+          </div>
+          <div>
+            <p class="prin-num">04</p>
+            <p class="prin-name">AI-Native</p>
+            <p>
+              Agents, MCP tool servers and LLM workflows built to production
+              standards: gated, observable, cost-controlled.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── CONTACT ────────────────────────────────────────────── -->
+    <footer class="contact" id="contact">
+      <div class="contact-in">
+        <div class="contact-grid">
+          <p class="contact-mono">U.D<span class="red-dot">.</span></p>
+          <div class="cfields">
+            <div class="cfield">
+              <p class="k">Email</p>
+              <p class="v">umangbackend@gmail.com</p>
+            </div>
+            <div class="cfield">
+              <p class="k">Status</p>
+              <p class="v">Open to new roles</p>
+            </div>
+            <div class="cfield">
+              <p class="k">Focus</p>
+              <p class="v">Backend · Distributed systems · AI</p>
+            </div>
           </div>
         </div>
 
-        <a class="resume-card span-2" href="umang-dubey-resume.pdf" target="_blank" rel="noopener">
-          <svg class="resume-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 13h8v1.6H8V13Zm0 3.2h8v1.6H8v-1.6ZM8 9.8h4v1.6H8V9.8Z"/></svg>
-          <span class="resume-txt">
-            <span class="resume-name">Résumé</span>
-            <span class="resume-meta">PDF · 1 page · updated Sep 2026</span>
-          </span>
-          <span class="resume-arrow">↗</span>
-        </a>
+        <p class="contact-line">
+          For roles, conversations, or systems problems worth thinking through
+        </p>
 
-        <div class="about-block span-2">
-          <span class="label">Technical</span>
-          <span class="value">Go · Java · Python · SQL<br>Kafka · PostgreSQL · TimescaleDB · Redis<br>AWS · Docker · Kubernetes<br>MCP · AI agents · RAG · LLM integration</span>
+        <div class="contact-links">
+          <a href="mailto:umangbackend@gmail.com">umangbackend@gmail.com ↗</a>
+          <a
+            href="https://www.linkedin.com/in/umang-dubey-007/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn ↗</a
+          >
+          <a
+            href="https://github.com/dev-umang-here"
+            target="_blank"
+            rel="noopener"
+            >GitHub ↗</a
+          >
+          <a href="umang-dubey-resume.pdf" target="_blank" rel="noopener"
+            >Résumé PDF ↗</a
+          >
+          <a href="tel:+916395843633">+91 63958 43633 ↗</a>
         </div>
 
-        <div class="about-block span-2">
-          <span class="value edu">B.Tech CS · AI minor · IET Lucknow · GPA 9.0</span>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ── 03 EXPERIENCE ──────────────────────────────────── -->
-  <section class="section" id="experience">
-    <div class="section-label">
-      <span>Experience</span>
-      <span class="meta">02 / Three roles, 2022–2026<br>Fintech · AdTech · DevTools</span>
-    </div>
-
-    <article class="role rv">
-      <div class="metarow">
-        <span>Nov 2025 — <span class="now">Present</span></span>
-        <span class="sep">/</span>
-        <span>Bengaluru, India</span>
-        <span class="sep">/</span>
-        <span>Fintech · Crypto trading</span>
-      </div>
-      <div class="role-grid">
-        <div>
-          <h3 class="role-title">Senior Software<br>Engineer</h3>
-          <p class="role-org">CoinSwitch<br>1M+ active users</p>
-        </div>
-        <div>
-          <p class="role-sum">I own access control and reliability for the trading services at the centre of the platform — the path more than a million users trade through every day — and I build the agent tooling the on-call team runs on.</p>
-          <ul class="role-list">
-            <li>Built a <strong>delegated, role-based access system</strong> as a single unified service, letting 1M+ users securely grant control of their trading accounts to someone else. It is now the authorisation path for 10+ product lines, with every access decision routed through one auditable point.</li>
-            <li>Re-architected the high-volume trading services for scale: modularised the core, enforced <strong>idempotent order handling</strong>, expanded automated coverage, and took ownership of incident response, cutting MTTR by 60% and taking P95 order latency down by an order of magnitude.</li>
-            <li>Delivered org-wide <strong>INR→USDT conversion</strong> with real-time rate adjustment and hedging-backed position protection, now processing 30M+ orders daily under strict consistency requirements.</li>
-            <li>Shipped <strong>MCP-based AI agents</strong> for on-call and operational workflows, and rebuilt logging, metrics and alerting around genuine paging signals rather than volume, cutting observability cost by 93%.</li>
-          </ul>
+        <div class="contact-foot">
+          <span>umang dubey · © 2026</span>
+          <span>Google Kick Start — 566th of 10,000+</span>
+          <span>made with intention</span>
         </div>
       </div>
-    </article>
+    </footer>
 
-    <article class="role rv">
-      <div class="metarow">
-        <span>Oct 2024 — Oct 2025</span>
-        <span class="sep">/</span>
-        <span>Bengaluru, India</span>
-        <span class="sep">/</span>
-        <span>AdTech · AI marketing platform</span>
-      </div>
-      <div class="role-grid">
-        <div>
-          <h3 class="role-title">Senior Software<br>Engineer</h3>
-          <p class="role-org">Pixis.ai<br>High-concurrency pipelines</p>
-        </div>
-        <div>
-          <p class="role-sum">Owned performance and concurrency across the core backend, and mentored engineers through design to delivery.</p>
-          <ul class="role-list">
-            <li>Cut memory footprint by 35% and P95 latency by 70% across critical services by eliminating storage inefficiencies, refactoring data models, and migrating graph-heavy workloads to <strong>TimescaleDB</strong>.</li>
-            <li>Redesigned a high-concurrency consumer service around a <strong>bounded worker pool</strong>. Unbounded goroutine growth was the real failure mode; tuned concurrency limits and proper backpressure lifted throughput 50%, to 20K+ messages/sec under burst traffic.</li>
-            <li>Built live performance-insight and notification features in Prism, surfacing campaign alerts that let marketing teams react 3x faster.</li>
-            <li>Mentored 3 engineers on code quality and review practice, halving PR turnaround, while owning features from HLD through delivery.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
+    <script>
+      (function () {
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
-    <article class="role rv">
-      <div class="metarow">
-        <span>Jul 2022 — Sep 2024</span>
-        <span class="sep">/</span>
-        <span>Noida, India</span>
-        <span class="sep">/</span>
-        <span>DevTools · Cloud testing</span>
-      </div>
-      <div class="role-grid">
-        <div>
-          <h3 class="role-title">Software<br>Engineer</h3>
-          <p class="role-org">LambdaTest<br>Infrastructure &amp; platform</p>
-        </div>
-        <div>
-          <p class="role-sum">Consolidated fragmented infrastructure into single services, and replaced manual, engineer-hours-heavy processes with self-service tooling.</p>
-          <ul class="role-list">
-            <li>Led the consolidation of distributed inventory services into <strong>one microservice</strong>, cutting user launch time by 45% and eliminating device unavailability through tighter state consistency and service orchestration.</li>
-            <li>Replaced manual database entries for device onboarding with a self-service integration workflow, taking the deployment cycle from a week to a day.</li>
-            <li>Designed an <strong>AI-powered accessibility platform</strong> end to end, with proof-of-concept integrations for enterprise clients, enabling systematic compliance checks across 15+ services and cutting manual audit effort by 60%.</li>
-            <li>Decoupled the frontend into independently deployable modules, cutting page load time by 40% and cross-team release cycles by 30% across 5+ internal teams.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-  </section>
+        // Scroll reveal
+        var items = document.querySelectorAll(".rv");
+        if (reduce || !("IntersectionObserver" in window)) {
+          items.forEach(function (el) {
+            el.classList.add("in");
+          });
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+          );
+          items.forEach(function (el) {
+            io.observe(el);
+          });
+        }
 
-  <!-- ── 04 SYSTEMS ─────────────────────────────────────── -->
-  <section class="section" id="systems">
-    <div class="section-label">
-      <span>Systems</span>
-      <span class="meta">03 / Production &amp; self-directed</span>
-    </div>
-
-    <!-- Self-healing on-call agent -->
-    <article class="sys rv">
-      <div class="metarow">
-        <span class="focus">TRIAGE↓</span>
-        <span class="sep">/</span>
-        <span>Alert-to-remediation loop</span>
-        <span class="sep">/</span>
-        <span>Agentic AI · SRE</span>
-      </div>
-      <h3 class="sys-title">Self-healing<br><span class="alt">on-call agent</span></h3>
-
-      <div class="sys-grid">
-        <div class="sys-tags">
-          <span class="sys-tag">Claude Agent SDK</span>
-          <span class="sys-tag">MCP</span>
-          <span class="sys-tag">Prometheus</span>
-          <span class="sys-tag">Kafka</span>
-          <span class="sys-tag">Kubernetes</span>
-        </div>
-
-        <div>
-          <div class="sys-prose">
-            <p>An autonomous incident-response system for a microservice stack. Most on-call incidents repeat — a crash-looping worker, a bad deploy, a poison message, an OOM — and each has a known diagnosis path. The slow part is a human waking up and orienting.</p>
-            <p>Five agents run as a pipeline behind a <strong>deterministic Python state machine</strong>: detector, diagnostician, remediator, verifier, librarian. Telling failures apart needs reasoning — a stopped consumer and a crash-looping consumer look identical in the lag metric but need opposite fixes — so the agents own judgement while the orchestrator owns lifecycle and sequencing.</p>
-            <p>The safety layer is <strong>code, never the model</strong>: an allow-list, a confidence gate and a circuit breaker sit between any proposal and production, and the MCP tool surface separates read-only tools from destructive ones outright.</p>
-          </div>
-
-          <a class="sys-live" href="https://github.com/dev-umang-here/ai-sre-agent" target="_blank" rel="noopener">github.com/dev-umang-here/ai-sre-agent ↗</a>
-
-          <figure class="diagram">
-            <svg class="dg" viewBox="0 0 900 300" role="img" aria-label="A deterministic orchestrator sequences five agents: detector, diagnostician, remediator, verifier and librarian. A guardrail layer of allow-list, confidence gate and circuit breaker sits below them, and beneath that an MCP tool layer split into read-only and destructive tools.">
-              <defs>
-                <marker id="sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
-                </marker>
-                <marker id="sab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 0 L10 5 L0 10 z" fill="#1E40FF" stroke="none"/>
-                </marker>
-              </defs>
-
-              <!-- orchestrator -->
-              <rect class="node" x="6" y="8" width="888" height="34"/>
-              <text class="cap" x="20" y="30">ORCHESTRATOR</text>
-              <text class="sub xs" x="150" y="30">deterministic state machine · owns the incident lifecycle</text>
-
-              <!-- agent team -->
-              <rect class="node blue" x="6" y="68" width="168" height="58"/>
-              <text class="cap" x="20" y="92">DETECTOR</text>
-              <text class="sub xs" x="20" y="110">alert + signal intake</text>
-              <line x1="174" y1="97" x2="196" y2="97" marker-end="url(#sa)"/>
-
-              <rect class="node blue" x="202" y="68" width="168" height="58"/>
-              <text class="cap" x="216" y="92">DIAGNOSTICIAN</text>
-              <text class="sub xs" x="216" y="110">root-cause hypothesis</text>
-              <line x1="370" y1="97" x2="392" y2="97" marker-end="url(#sa)"/>
-
-              <rect class="node blue" x="398" y="68" width="168" height="58"/>
-              <text class="cap" x="412" y="92">REMEDIATOR</text>
-              <text class="sub xs" x="412" y="110">restart, scale, rollback</text>
-              <line x1="566" y1="97" x2="588" y2="97" marker-end="url(#sa)"/>
-
-              <rect class="node blue" x="594" y="68" width="150" height="58"/>
-              <text class="cap" x="608" y="92">VERIFIER</text>
-              <text class="sub xs" x="608" y="110">did it actually fix?</text>
-              <line x1="744" y1="97" x2="766" y2="97" marker-end="url(#sa)"/>
-
-              <rect class="node blue" x="772" y="68" width="122" height="58"/>
-              <text class="cap" x="786" y="92">LIBRARIAN</text>
-              <text class="sub xs" x="786" y="110">runbook store</text>
-
-              <!-- guardrail layer -->
-              <rect class="node gate" x="6" y="152" width="888" height="30"/>
-              <text class="gate-t" x="20" y="171">GUARDRAIL LAYER</text>
-              <text class="gate-t" x="170" y="171">ALLOW-LIST  ·  CONFIDENCE GATE  ·  CIRCUIT BREAKER</text>
-              <text class="gate-t" x="600" y="171">— IN CODE, NEVER THE LLM</text>
-
-              <!-- tool layer -->
-              <rect class="node" x="6" y="208" width="436" height="52"/>
-              <text class="cap" x="20" y="230">MCP TOOLS — READ-ONLY</text>
-              <text class="sub xs" x="20" y="248">metrics · logs · traces · deploy history</text>
-
-              <rect class="node" x="458" y="208" width="436" height="52"/>
-              <text class="cap" x="472" y="230">MCP TOOLS — DESTRUCTIVE</text>
-              <text class="sub xs" x="472" y="248">docker · k8s · kafka offsets · rollback</text>
-
-              <line x1="224" y1="182" x2="224" y2="208" stroke="#545C75" stroke-dasharray="2 3"/>
-              <line x1="676" y1="182" x2="676" y2="208" stroke="#545C75" stroke-dasharray="2 3"/>
-
-              <!-- librarian feedback -->
-              <path class="loop" d="M833 126 L833 140 L286 140 L286 126" marker-end="url(#sab)"/>
-              <text class="loop-t" x="470" y="284">OUTCOMES FEED THE RUNBOOK STORE — THE NEXT INCIDENT STARTS WARMER</text>
-            </svg>
-            <figcaption class="diagram-cap">Fig. 01 — Agents reason. Code decides what they're allowed to touch.</figcaption>
-          </figure>
-
-        </div>
-      </div>
-    </article>
-
-    <!-- Intellr -->
-    <article class="sys rv">
-      <div class="metarow">
-        <span class="focus">IN PRODUCTION</span>
-        <span class="sep">/</span>
-        <span>intellr.io</span>
-        <span class="sep">/</span>
-        <span>Multi-agent platform</span>
-      </div>
-      <h3 class="sys-title">Intellr<br><span class="alt">hiring platform</span></h3>
-
-      <div class="sys-grid">
-        <div class="sys-tags">
-          <span class="sys-tag">Multi-agent</span>
-          <span class="sys-tag">Voice AI</span>
-          <span class="sys-tag">Orchestration</span>
-          <span class="sys-tag">Event pipelines</span>
-        </div>
-
-        <div>
-          <div class="sys-prose">
-            <p>A live AI hiring platform built around <strong>three autonomous agents behind a shared orchestration layer</strong>. A screening agent scores candidates across resume, LinkedIn and GitHub signals; a voice agent runs real-time conversational interviews with adaptive follow-ups; an automation agent advances candidates through rule-driven pipelines.</p>
-            <p>The engineering problem is not the models, it's everything around them: keeping voice turn-taking inside a latency budget, making scoring reproducible enough to audit, and holding pipeline state consistent while three agents and a calendar integration all write to it. The orchestration layer is deterministic on purpose, so agent behaviour stays observable and replayable.</p>
-          </div>
-
-          <a class="sys-live" href="https://intellr.io/" target="_blank" rel="noopener">intellr.io ↗</a>
-
-          <figure class="diagram">
-            <svg class="dg" viewBox="0 0 900 230" role="img" aria-label="Applicants enter a screening agent, then a voice interview agent, then an automation agent that advances candidates and syncs ATS and calendar, all sequenced by a deterministic orchestration layer.">
-              <defs>
-                <marker id="ia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
-                </marker>
-              </defs>
-
-              <rect class="node" x="6" y="34" width="162" height="64"/>
-              <text class="cap" x="20" y="60">APPLICANTS</text>
-              <text class="sub xs" x="20" y="78">resume · profile · repo</text>
-
-              <line x1="168" y1="66" x2="196" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="202" y="34" width="162" height="64"/>
-              <text class="cap" x="216" y="60">SCREENING AGENT</text>
-              <text class="sub xs" x="216" y="78">multi-signal scoring</text>
-
-              <line x1="364" y1="66" x2="392" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="398" y="34" width="162" height="64"/>
-              <text class="cap" x="412" y="60">VOICE AGENT</text>
-              <text class="sub xs" x="412" y="78">adaptive interview</text>
-
-              <line x1="560" y1="66" x2="588" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node blue" x="594" y="34" width="162" height="64"/>
-              <text class="cap" x="608" y="60">AUTOMATION</text>
-              <text class="sub xs" x="608" y="78">IF/THEN advance</text>
-
-              <line x1="756" y1="66" x2="784" y2="66" marker-end="url(#ia)"/>
-
-              <rect class="node" x="790" y="34" width="104" height="64"/>
-              <text class="cap" x="804" y="60">ATS +</text>
-              <text class="cap" x="804" y="76">CALENDAR</text>
-
-              <!-- orchestration band -->
-              <rect class="band" x="202" y="126" width="554" height="42"/>
-              <text class="cap" x="216" y="152">DETERMINISTIC ORCHESTRATION LAYER</text>
-              <text class="sub xs" x="530" y="152">pipeline state · retries · audit trail</text>
-              <line x1="283" y1="98" x2="283" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-              <line x1="479" y1="98" x2="479" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-              <line x1="675" y1="98" x2="675" y2="126" stroke="#545C75" stroke-dasharray="2 3"/>
-
-              <text class="tiny" x="216" y="196">EVERY AGENT DECISION IS SCORED, LOGGED AND REPLAYABLE</text>
-            </svg>
-            <figcaption class="diagram-cap">Fig. 02 — Agents do the judgement. The orchestrator owns the state.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </article>
-
-    <!-- Instamart -->
-    <article class="sys rv">
-      <div class="metarow">
-        <span class="focus">PLANNING↑</span>
-        <span class="sep">/</span>
-        <span>Preferences-to-basket</span>
-        <span class="sep">/</span>
-        <span>Agent orchestration</span>
-      </div>
-      <h3 class="sys-title">Instamart<br><span class="alt">grocery agent</span></h3>
-
-      <div class="sys-grid">
-        <div class="sys-tags">
-          <span class="sys-tag">MCP tool server</span>
-          <span class="sys-tag">LLM planning</span>
-        </div>
-
-        <div>
-          <div class="sys-prose">
-            <p>An agent built on Swiggy Builders Club's <strong>Instamart MCP server</strong> that turns dietary preferences into a weekly meal plan, then resolves that plan into a real basket — SKU matching, substitutions when stock fails — and places the order.</p>
-            <p>Built first for people in Bengaluru who don't know what to cook. Checkout is deliberately approval-gated: an agent that spends your money unprompted is a bug, not a feature.</p>
-          </div>
-
-          <figure class="diagram">
-            <svg class="dg" viewBox="0 0 900 190" role="img" aria-label="Dietary preferences become a weekly meal plan, which resolves to a basket through the Instamart MCP server, held at a human approval gate before the order is placed.">
-              <defs>
-                <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <path d="M0 0 L10 5 L0 10 z" fill="#0A1024" stroke="none"/>
-                </marker>
-              </defs>
-
-              <rect class="node" x="6" y="50" width="185" height="66"/>
-              <text class="cap" x="22" y="78">PREFERENCES</text>
-              <text class="sub xs" x="22" y="96">diet · budget · household</text>
-
-              <line x1="191" y1="83" x2="232" y2="83" marker-end="url(#ga)"/>
-
-              <rect class="node blue" x="238" y="50" width="185" height="66"/>
-              <text class="cap" x="254" y="78">MEAL PLAN</text>
-              <text class="sub xs" x="254" y="96">LLM planning · 7 days</text>
-
-              <line x1="423" y1="83" x2="464" y2="83" marker-end="url(#ga)"/>
-
-              <rect class="node blue" x="470" y="50" width="185" height="66"/>
-              <text class="cap" x="486" y="78">RESOLVE BASKET</text>
-              <text class="sub xs" x="486" y="96">Instamart MCP server</text>
-              <text class="tiny" x="486" y="134">SKU MATCH · SUBSTITUTIONS</text>
-              <line x1="486" y1="122" x2="645" y2="122" stroke="#1E40FF" stroke-dasharray="2 3"/>
-
-              <line x1="655" y1="83" x2="696" y2="83" marker-end="url(#ga)"/>
-
-              <rect class="node gate" x="702" y="8" width="150" height="26"/>
-              <text class="gate-t" x="716" y="25">HUMAN APPROVAL</text>
-              <line x1="777" y1="34" x2="777" y2="48" stroke="#E8200C"/>
-
-              <rect class="node" x="702" y="50" width="185" height="66"/>
-              <text class="cap" x="718" y="78">PLACE ORDER</text>
-              <text class="sub xs" x="718" y="96">gated checkout</text>
-            </svg>
-            <figcaption class="diagram-cap">Fig. 03 — Planning is automated. Spending is not.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- ── 05 HOW I WORK ──────────────────────────────────── -->
-  <section class="section" id="principles">
-    <div class="section-label">
-      <span>Engineering</span>
-      <span class="meta">04 / How I build and operate systems</span>
-    </div>
-
-    <div class="prin-grid rv">
-      <div>
-        <p class="prin-num">01</p>
-        <p class="prin-name">Discovery</p>
-        <p>Architecture follows the use case. I work out what the system actually has to do — the load shape, the consistency it owes, the failure it can tolerate — before I design for it.</p>
-      </div>
-      <div>
-        <p class="prin-num">02</p>
-        <p class="prin-name">Ownership</p>
-        <p>HLD through on-call. The design review, the rollout, the dashboards, the SLO — and the escalation path when the service I built starts failing.</p>
-      </div>
-      <div>
-        <p class="prin-num">03</p>
-        <p class="prin-name">Correctness</p>
-        <p>Idempotent handlers, bounded worker pools, explicit backpressure, partition-aware consumers. Most production bugs at scale are ordering and retry bugs, not logic bugs.</p>
-      </div>
-      <div>
-        <p class="prin-num">04</p>
-        <p class="prin-name">Reliability</p>
-        <p>Timeouts, circuit breakers, graceful degradation, replayable state. Every dependency gets a defined behaviour for when it's slow, wrong, or gone.</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ── CONTACT ────────────────────────────────────────────── -->
-<footer class="contact" id="contact">
-  <div class="contact-in">
-    <div class="contact-grid">
-      <p class="contact-mono">U.D<span class="red-dot">.</span></p>
-      <div class="cfields">
-        <div class="cfield">
-          <p class="k">Email</p>
-          <p class="v">umangbackend@gmail.com</p>
-        </div>
-        <div class="cfield">
-          <p class="k">Status</p>
-          <p class="v">Open to new roles</p>
-        </div>
-        <div class="cfield">
-          <p class="k">Focus</p>
-          <p class="v">Backend · Distributed systems · AI</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="contact-line">For roles, conversations, or systems problems worth thinking through</p>
-
-    <div class="contact-links">
-      <a href="mailto:umangbackend@gmail.com">umangbackend@gmail.com ↗</a>
-      <a href="https://www.linkedin.com/in/umang-dubey-007/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://github.com/dev-umang-here" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="umang-dubey-resume.pdf" target="_blank" rel="noopener">Résumé PDF ↗</a>
-      <a href="tel:+916395843633">+91 63958 43633 ↗</a>
-    </div>
-
-    <div class="contact-foot">
-      <span>umang dubey · © 2026</span>
-      <span>Google Kick Start — 566th of 10,000+</span>
-      <span>made with intention</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-(function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Scroll reveal
-  var items = document.querySelectorAll('.rv');
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    items.forEach(function(el){ io.observe(el); });
-  }
-
-  // Nav active state
-  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
-  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); })
-                     .filter(Boolean);
-  if (targets.length && 'IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (!e.isIntersecting) return;
-        links.forEach(function(a){
-          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    targets.forEach(function(t){ spy.observe(t); });
-  }
-})();
-</script>
-
-</body>
+        // Nav active state
+        var links = Array.prototype.slice.call(
+          document.querySelectorAll(".nav a"),
+        );
+        var targets = links
+          .map(function (a) {
+            return document.querySelector(a.getAttribute("href"));
+          })
+          .filter(Boolean);
+        if (targets.length && "IntersectionObserver" in window) {
+          var spy = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                links.forEach(function (a) {
+                  a.classList.toggle(
+                    "active",
+                    a.getAttribute("href") === "#" + e.target.id,
+                  );
+                });
+              });
+            },
+            { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+          );
+          targets.forEach(function (t) {
+            spy.observe(t);
+          });
+        }
+      })();
+    </script>
+  </body>
 </html>
