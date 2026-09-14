@@ -856,87 +856,57 @@
       .contact-in {
         max-width: var(--max-w);
         margin: 0 auto;
-        padding: 96px var(--mx) 40px;
+        padding: 112px var(--mx) 40px;
+        text-align: center;
       }
-      .contact-grid {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 72px;
-        align-items: start;
-        margin-bottom: 72px;
-      }
-      @media (max-width: 940px) {
-        .contact-grid {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-      }
-      .contact-mono {
+      /* The address is the whole invitation — no restating it in a
+         field list above and a link row below. */
+      .contact-email {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.22em;
         font-family: var(--display);
         font-weight: 900;
-        font-size: clamp(3rem, 7vw, 6rem);
-        line-height: 0.86;
+        font-size: clamp(1.05rem, 6.6vw, 5.4rem);
+        line-height: 1;
         letter-spacing: -0.03em;
+        max-width: 100%;
+        transition: color 0.2s ease;
       }
-      .contact-mono .red-dot {
-        color: var(--red);
+      .contact-email:hover {
+        color: var(--blue);
       }
-      .cfields {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 32px;
-        justify-content: start;
+      .contact-arrow {
+        width: 0.66em;
+        height: 0.66em;
+        flex: none;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 7;
+        transition: transform 0.2s ease;
       }
-      @media (max-width: 720px) {
-        .cfields {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-      }
-      .cfield .k {
-        font-family: var(--mono);
-        font-size: 0.66rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--red);
-        margin-bottom: 6px;
-      }
-      .cfield .v {
-        font-family: var(--mono);
-        font-size: 0.8rem;
-        color: var(--ink);
-      }
-      .contact-line {
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--ink-soft);
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--ink);
-        margin-bottom: 28px;
+      .contact-email:hover .contact-arrow {
+        transform: translate(0.06em, -0.06em);
       }
       .contact-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px 56px;
-        margin-bottom: 64px;
+        justify-content: center;
+        gap: 14px 40px;
+        margin-top: 40px;
+        margin-bottom: 88px;
       }
       .contact-links a {
         font-family: var(--mono);
-        font-size: 0.92rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid var(--rule);
-        padding-bottom: 3px;
-        transition:
-          color 0.2s ease,
-          border-color 0.2s ease;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        transition: color 0.2s ease;
       }
       .contact-links a:hover {
         color: var(--blue);
-        border-color: var(--blue);
       }
       .contact-foot {
         display: flex;
@@ -945,6 +915,7 @@
         justify-content: space-between;
         border-top: 1px solid var(--rule);
         padding-top: 20px;
+        text-align: left;
       }
       .contact-foot span {
         font-family: var(--mono);
@@ -1041,12 +1012,6 @@
               engineer around it.
             </p>
             <p>
-              Alongside backend and distributed systems, I build the
-              <span class="blue">AI layer</span> on top. LLMs, AI agents, MCP
-              and AI-native development, used to make software smarter and
-              automate real workflows.
-            </p>
-            <p>
               I enjoy taking problems from 0→1: starting with the use case,
               designing the right architecture, and turning an idea into a
               production system.
@@ -1058,8 +1023,8 @@
               design, orchestration and guardrails.
             </p>
             <p>
-              I enjoy taking problems from 0→1: Always building. Always
-              learning. Looking for the next opportunity.
+              Always building. Always learning.
+              <strong>Looking for the next opportunity.</strong>
             </p>
           </div>
 
@@ -1954,30 +1919,14 @@
     <!-- ── CONTACT ────────────────────────────────────────────── -->
     <footer class="contact" id="contact">
       <div class="contact-in">
-        <div class="contact-grid">
-          <p class="contact-mono">U.D<span class="red-dot">.</span></p>
-          <div class="cfields">
-            <div class="cfield">
-              <p class="k">Email</p>
-              <p class="v">umangbackend@gmail.com</p>
-            </div>
-            <div class="cfield">
-              <p class="k">Status</p>
-              <p class="v">Open to new roles</p>
-            </div>
-            <div class="cfield">
-              <p class="k">Focus</p>
-              <p class="v">Backend · Distributed systems · AI</p>
-            </div>
-          </div>
-        </div>
-
-        <p class="contact-line">
-          For roles, conversations, or systems problems worth thinking through
-        </p>
+        <a class="contact-email" href="mailto:umangbackend@gmail.com">
+          <span>umangbackend@gmail.com</span>
+          <svg class="contact-arrow" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M10 90 L90 10 M90 10 L90 58 M90 10 L42 10" />
+          </svg>
+        </a>
 
         <div class="contact-links">
-          <a href="mailto:umangbackend@gmail.com">umangbackend@gmail.com ↗</a>
           <a
             href="https://www.linkedin.com/in/umang-dubey-007/"
             target="_blank"
@@ -1998,7 +1947,7 @@
 
         <div class="contact-foot">
           <span>umang dubey · © 2026</span>
-          <span>Google Kick Start — 566th of 10,000+</span>
+          <span>Google Kick Start · 566th of 10,000+</span>
           <span>made with intention</span>
         </div>
       </div>
