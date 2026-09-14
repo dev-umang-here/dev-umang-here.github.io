@@ -225,19 +225,20 @@ a{ color:inherit; text-decoration:none; }
 .about-link:hover{ color:var(--blue); }
 .about-link:hover .ico{ color:var(--blue); }
 
-/* ── SKILLS ─────────────────────────────────────────────────── */
-.skills{ display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
-@media (max-width:1100px){ .skills{ grid-template-columns:repeat(2,1fr); gap:40px; } }
-@media (max-width:620px){ .skills{ grid-template-columns:1fr; gap:32px; } }
-.skill-group .label{
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink);
-  padding-bottom:10px; margin-bottom:16px; border-bottom:1px solid var(--ink);
-  display:block;
+/* The resume is a document, not a nav item — it gets its own object. */
+.resume-card{
+  display:flex; align-items:center; gap:14px;
+  border:1px solid var(--ink); padding:14px 16px;
+  transition:background .2s ease, color .2s ease;
 }
-.skill-group ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
-.skill-group li{ font-family:var(--mono); font-size:.79rem; color:var(--ink-soft); line-height:1.5; }
-.skill-group li .lead{ color:var(--ink); }
+.resume-card:hover{ background:var(--ink); color:var(--paper); }
+.resume-ico{ width:22px; height:22px; flex:none; fill:currentColor; }
+.resume-txt{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+.resume-name{ font-family:var(--mono); font-size:.86rem; letter-spacing:.02em; }
+.resume-meta{ font-family:var(--mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+.resume-card:hover .resume-meta{ color:var(--blue-light); }
+.resume-arrow{ margin-left:auto; font-family:var(--mono); font-size:.9rem; }
+.about-block .value.edu{ color:var(--ink-soft); font-size:.72rem; }
 
 /* ── EXPERIENCE ─────────────────────────────────────────────── */
 .role{ padding:56px 0; border-top:1px solid var(--rule); }
@@ -322,24 +323,6 @@ a{ color:inherit; text-decoration:none; }
 .dg .loop{ stroke:var(--blue); stroke-dasharray:3 3; }
 .dg .loop-t{ fill:var(--blue); font-size:9px; letter-spacing:.12em; }
 
-/* Tool surface: one real technical artefact, shown not described. */
-.code{
-  margin-top:28px; border:1px solid var(--ink); background:var(--paper-2);
-  padding:22px 24px; overflow-x:auto;
-}
-.code pre{
-  font-family:var(--mono); font-size:.76rem; line-height:1.75;
-  color:var(--ink); white-space:pre; min-width:460px;
-}
-.code .c{ color:var(--ink-soft); }
-.code .r{ color:var(--red); }
-.code .b{ color:var(--blue); }
-.code-cap{
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink-soft);
-  margin-top:16px; padding-top:12px; border-top:1px solid var(--rule);
-}
-
 /* ── PRINCIPLES ─────────────────────────────────────────────── */
 .prin-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
 @media (max-width:1100px){ .prin-grid{ grid-template-columns:repeat(2,1fr); gap:40px; } }
@@ -406,7 +389,6 @@ a{ color:inherit; text-decoration:none; }
 
     <nav class="nav">
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#systems">Systems</a>
       <a href="#principles">Engineering</a>
@@ -453,10 +435,12 @@ a{ color:inherit; text-decoration:none; }
 
     <div class="about-grid rv">
       <div class="about-prose">
-        <p>I'm a <strong>backend AI engineer</strong> who takes systems from 0→1 and works across the whole stack. Four years building <strong>distributed systems</strong> and making them reliable, cost-effective and scalable.</p>
-        <p>I build production <span class="blue">AI systems</span> the same way I build backend ones — for reliability and cost, not for demos. AI agents and AI-native development, used to make processes faster and take repetitive work off the table.</p>
-        <p>I start from the use case. The architecture follows from what the system actually has to do, not the other way round.</p>
-        <p>Building something new most days, and still learning. Looking for the next challenge.</p>
+        <p>I'm a <strong>Backend AI Engineer</strong> building scalable systems where reliability, performance and cost matter.</p>
+        <p>At <strong>CoinSwitch</strong> I work on the infrastructure powering a high-volume trading platform that handles 30M+ orders a day, from access control and delegated trading to the systems behind the order pipeline. I've also driven improvements like a 93% reduction in observability cost, using the same approach I bring to performance work: understand the real bottleneck, then engineer around it.</p>
+        <p>Alongside backend and distributed systems, I build the <span class="blue">AI layer</span> on top. LLMs, AI agents, MCP and AI-native development, used to make software smarter and automate real workflows.</p>
+        <p>I enjoy taking problems from 0→1: starting with the use case, designing the right architecture, and turning an idea into a production system.</p>
+        <p>My interests sit at the intersection of <strong>distributed systems and agentic AI</strong>, from partitioning, backpressure and consistency trade-offs to tool design, orchestration and guardrails.</p>
+        <p>Always building. Always learning. Looking for the next hard problem to take from 0→1.</p>
       </div>
 
       <aside class="about-side">
@@ -465,75 +449,28 @@ a{ color:inherit; text-decoration:none; }
           <div class="about-links">
             <a class="about-link" href="https://www.linkedin.com/in/umang-dubey-007/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.03-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9Z"/></svg>LinkedIn</a>
             <a class="about-link" href="https://github.com/dev-umang-here" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
-            <a class="about-link" href="umang-dubey-resume.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 13h8v1.6H8V13Zm0 3.2h8v1.6H8v-1.6ZM8 9.8h4v1.6H8V9.8Z"/></svg>Résumé PDF</a>
             <a class="about-link" href="mailto:umangbackend@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.2L4.6 7.2 4 8l8 6.5L20 8l-.6-.8L12 13.2Z"/></svg>Email</a>
           </div>
         </div>
 
-        <div class="about-block">
-          <span class="label">Currently</span>
-          <span class="value">Senior Software Engineer<br>CoinSwitch, Bengaluru</span>
-        </div>
+        <a class="resume-card span-2" href="umang-dubey-resume.pdf" target="_blank" rel="noopener">
+          <svg class="resume-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 2.5L17.5 8H14V4.5ZM8 13h8v1.6H8V13Zm0 3.2h8v1.6H8v-1.6ZM8 9.8h4v1.6H8V9.8Z"/></svg>
+          <span class="resume-txt">
+            <span class="resume-name">Résumé</span>
+            <span class="resume-meta">PDF · 1 page · updated Sep 2026</span>
+          </span>
+          <span class="resume-arrow">↗</span>
+        </a>
 
-        <div class="about-block">
-          <span class="label">Focus</span>
-          <span class="value">Distributed systems<br>Agent infrastructure</span>
+        <div class="about-block span-2">
+          <span class="label">Technical</span>
+          <span class="value">Go · Java · Python · SQL<br>Kafka · PostgreSQL · TimescaleDB · Redis<br>AWS · Docker · Kubernetes<br>MCP · AI agents · RAG · LLM integration</span>
         </div>
 
         <div class="about-block span-2">
-          <span class="label">Education</span>
-          <span class="value">B.Tech Computer Science, minor in Artificial Intelligence<br>IET Lucknow &middot; GPA 9.0</span>
+          <span class="value edu">B.Tech CS · AI minor · IET Lucknow · GPA 9.0</span>
         </div>
       </aside>
-    </div>
-  </section>
-
-  <!-- ── 02 SKILLS ──────────────────────────────────────── -->
-  <section class="section" id="skills">
-    <div class="section-label">
-      <span>Skills</span>
-      <span class="meta">02 / What I work with</span>
-    </div>
-
-    <div class="skills rv">
-      <div class="skill-group">
-        <span class="label">Backend &amp; Distributed Systems</span>
-        <ul>
-          <li><span class="lead">Go, Python, Java</span></li>
-          <li>Microservices, event-driven architecture</li>
-          <li>Concurrency, backpressure, idempotency</li>
-          <li>HLD / LLD, design review</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <span class="label">Data &amp; Infrastructure</span>
-        <ul>
-          <li><span class="lead">Kafka, PostgreSQL, TimescaleDB</span></li>
-          <li>Redis, Cassandra, vector databases</li>
-          <li>Schema design, query optimisation</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <span class="label">AI &amp; Agent Systems</span>
-        <ul>
-          <li><span class="lead">MCP tool servers, schema design</span></li>
-          <li>Claude Agent SDK, LangChain, LangGraph</li>
-          <li>Agent orchestration, RAG pipelines</li>
-          <li>Guardrails, token budgeting, cost control</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <span class="label">Cloud, Reliability &amp; Tooling</span>
-        <ul>
-          <li><span class="lead">AWS, GCP, Azure</span></li>
-          <li>Docker, Kubernetes, CI/CD</li>
-          <li>Prometheus, Grafana, tracing</li>
-          <li>SLOs, incident response, on-call</li>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -541,7 +478,7 @@ a{ color:inherit; text-decoration:none; }
   <section class="section" id="experience">
     <div class="section-label">
       <span>Experience</span>
-      <span class="meta">Three roles / 2022–2026<br>Fintech · AdTech · DevTools</span>
+      <span class="meta">02 / Three roles, 2022–2026<br>Fintech · AdTech · DevTools</span>
     </div>
 
     <article class="role rv">
@@ -624,7 +561,7 @@ a{ color:inherit; text-decoration:none; }
   <section class="section" id="systems">
     <div class="section-label">
       <span>Systems</span>
-      <span class="meta">Production &amp; self-directed<br>2025–2026</span>
+      <span class="meta">03 / Production &amp; self-directed</span>
     </div>
 
     <!-- Self-healing on-call agent -->
@@ -722,24 +659,6 @@ a{ color:inherit; text-decoration:none; }
             <figcaption class="diagram-cap">Fig. 01 — Agents reason. Code decides what they're allowed to touch.</figcaption>
           </figure>
 
-          <div class="code">
-<pre><span class="c"># the tool surface is split at the server boundary, not at prompt time</span>
-tools/list
-
-  <span class="b">read_only</span>            <span class="c">// always available, no gate</span>
-    metrics.query        prometheus range + instant
-    logs.search          service, level, window
-    traces.get           by trace id
-    deploy.history       last N deploys per service
-
-  <span class="r">destructive</span>          <span class="c">// allow-list + confidence gate + breaker</span>
-    docker.restart       requires: known_failure, conf &gt;= 0.85
-    k8s.scale            requires: bounded delta, breaker closed
-    deploy.rollback      requires: prior good sha, conf &gt;= 0.90
-    kafka.reset_offset   requires: explicit human approval
-</pre>
-          </div>
-          <p class="code-cap">Fig. 02 — The MCP tool surface. Capability is a server-side property.</p>
         </div>
       </div>
     </article>
@@ -817,7 +736,7 @@ tools/list
 
               <text class="tiny" x="216" y="196">EVERY AGENT DECISION IS SCORED, LOGGED AND REPLAYABLE</text>
             </svg>
-            <figcaption class="diagram-cap">Fig. 03 — Agents do the judgement. The orchestrator owns the state.</figcaption>
+            <figcaption class="diagram-cap">Fig. 02 — Agents do the judgement. The orchestrator owns the state.</figcaption>
           </figure>
         </div>
       </div>
@@ -882,7 +801,7 @@ tools/list
               <text class="cap" x="718" y="78">PLACE ORDER</text>
               <text class="sub xs" x="718" y="96">gated checkout</text>
             </svg>
-            <figcaption class="diagram-cap">Fig. 04 — The same approval gate as Fig. 01, for the same reason.</figcaption>
+            <figcaption class="diagram-cap">Fig. 03 — Planning is automated. Spending is not.</figcaption>
           </figure>
         </div>
       </div>
@@ -893,7 +812,7 @@ tools/list
   <section class="section" id="principles">
     <div class="section-label">
       <span>Engineering</span>
-      <span class="meta">How I build and operate systems</span>
+      <span class="meta">04 / How I build and operate systems</span>
     </div>
 
     <div class="prin-grid rv">
